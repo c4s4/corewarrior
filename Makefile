@@ -22,3 +22,6 @@ resources: # Add resources in build
 
 jar: clean build resources # Build jar file
 	cd $(BUILD_DIR) && jar cfm corewarrior.jar *
+
+publish: # Copy REAME in sweetohm site
+	cp README.md ../sweetohm/content/article/corewarrior.md
