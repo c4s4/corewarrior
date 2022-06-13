@@ -33,6 +33,7 @@ public final class DialogApropos extends Dialog
         barreBoutons.setLayout(new FlowLayout());
         barreBoutons.add(boutonOK);
         add("South", barreBoutons);
+        setFont(Defaults.fonte);
         // on pack la fenètre et on la recentre
         pack();
         setResizable(false);

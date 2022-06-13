@@ -12,7 +12,7 @@ import java.util.*;
 
 public final class Editeur extends Frame implements
         WindowListener, ActionListener, TextListener, Runnable, FilenameFilter {
-    private static final String version = "0.2";
+    private static final String version = "0.3";
     private static final String copyright = "Core Warrior " + version + " ";
     // indicateur d'un chargement de fichier
     private boolean chargement = false;
@@ -63,7 +63,6 @@ public final class Editeur extends Frame implements
     private static String repertoire = "";
     private static String fichier = "";
     private boolean modifie = false;
-    private Font fonte = new Font("Dialog", Font.PLAIN, 14);
     private static final String imageConfirmation = "img/warning.gif";
     private Thread thread;
 
@@ -74,6 +73,7 @@ public final class Editeur extends Frame implements
         else
             editeur = new Editeur(args[0]);
         editeur.setTitle(copyright + "[" + fichier + "]");
+        editeur.setFont(Defaults.fonte);
         editeur.show();
         DialogApropos.afficher(editeur, "img/aPropos.gif");
     }
@@ -215,7 +215,7 @@ public final class Editeur extends Frame implements
         add("South", etat);
         etat.setBackground(Color.lightGray);
         // redimensionne la fenètre
-        setSize(640, 480);
+        setSize(1024, 768);
         Dimension a = getToolkit().getScreenSize();
         Rectangle b = getBounds();
         setLocation((a.width - b.width) / 2, (a.height - b.height) / 2);

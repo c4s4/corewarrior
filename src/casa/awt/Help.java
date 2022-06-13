@@ -51,6 +51,7 @@ public final class Help extends Frame implements WindowListener {
         }
         // on construit l'interface
         add("Center", texte);
+        setFont(Defaults.fonte);
         // on redimensionne et centre la fenêtre
         pack();
         Dimension a = getToolkit().getScreenSize();

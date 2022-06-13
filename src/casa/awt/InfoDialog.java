@@ -31,6 +31,7 @@ public class InfoDialog extends Dialog
         Panel panelBoutons = new Panel();
         panelBoutons.add(boutonOK);
         add("South", panelBoutons);
+        setFont(Defaults.fonte);
         // on pack le Dialog et on le centre sur la frame
         pack();
         setResizable(false);

@@ -4,7 +4,7 @@ import java.awt.*;
 
 public final class BoiteConfigurationTextArea extends Dialog {
     /** titre de la boite */
-    private final static String titre = "Choix de la fonte du forum";
+    private final static String titre = "Choix de la fonte";
     /** configurateur du TextArea */
     private ConfigurationTextArea config;
     /** référence d'une fenêtre ouverte */
@@ -50,6 +50,7 @@ public final class BoiteConfigurationTextArea extends Dialog {
         add("South", barre);
         /* on dimensionne la fenêtre */
         setResizable(false);
+        setFont(Defaults.fonte);
         pack();
     }
 

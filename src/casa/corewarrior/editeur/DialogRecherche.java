@@ -1,5 +1,6 @@
 package casa.corewarrior.editeur;
 
+import casa.awt.*;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -47,6 +48,7 @@ class DialogRecherche extends Dialog
                 GridBagConstraints.NONE, GridBagConstraints.EAST, 0, 0);
         Editeur.ajouter(this, boutonOK, 3, 1, 1, 1,
                 GridBagConstraints.NONE, GridBagConstraints.EAST, 0, 0);
+        setFont(Defaults.fonte);
         // on pack la fenètre et on la recentre
         pack();
         setResizable(false);

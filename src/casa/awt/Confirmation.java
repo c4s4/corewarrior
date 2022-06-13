@@ -51,6 +51,7 @@ public class Confirmation extends Dialog
         // on ajoute le dessin à gauche
         Dessin dessin = new Dessin(image);
         add("West", dessin);
+        setFont(Defaults.fonte);
         // on pack le Dialog et on le centre sur la frame
         pack();
         setResizable(false);
