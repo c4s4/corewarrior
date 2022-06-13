@@ -121,7 +121,7 @@ Ce programme nécéssite une machine virtuelle java pour fonctionner. On peut en
 
 [corewarrior-0.2.zip](https://sweetohm.net/arc/corewarrior-0.2.zip)
 
-Pour installer le programme, dézipper l'archive dans le répertoire de votre choix (par exemple */usr/local/corewarrior*). On peut alors lancer les programmes avec les scripts *editer*, *compiler* et *moteur* du répertoire *bin* dans le répertoire d'installation.
+Pour installer le programme, dézipper l'archive dans le répertoire de votre choix (par exemple */usr/local/corewarrior*). On peut alors lancer les programmes avec les scripts *editer*, *compiler* et *moteur* dans le répertoire d'installation.
 
 ## Editeur
 
