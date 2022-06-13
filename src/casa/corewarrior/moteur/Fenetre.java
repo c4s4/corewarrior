@@ -13,28 +13,28 @@ import java.util.*;
 public final class Fenetre extends Frame
 implements WindowListener,ActionListener,Runnable
 {
-	// référence du moteur
+	// rÃ©fÃ©rence du moteur
   Moteur moteur;
-	// constante de définition des couleurs
+	// constante de dÃ©finition des couleurs
   final static int OUEST=0,EST=1;
 	// consoles pour le controle des programmes
 	Console[] consoles=new Console[2];
-  // Représentation graphique de la mémoire
+  // ReprÃ©sentation graphique de la mÃ©moire
   public Plateau plateau;
-  // boolean indiquant si on doit terminer le programme à la fermeture
+  // boolean indiquant si on doit terminer le programme Ã  la fermeture
 	private boolean exit;
 
-  // boutons de défilement des progarmmes
+  // boutons de dÃ©filement des progarmmes
   private GraphButton boutonStep=
-		new GraphButton("Step","images/step.gif","images/step2.gif");
+		new GraphButton("Step","img/step.gif","img/step2.gif");
   private GraphButton boutonRun=
-		new GraphButton("Run","images/launch.gif","images/launch2.gif");
+		new GraphButton("Run","img/launch.gif","img/launch2.gif");
   private GraphButton boutonPause=
-		new GraphButton("Pause","images/pause.gif","images/pause2.gif");
+		new GraphButton("Pause","img/pause.gif","img/pause2.gif");
   private GraphButton boutonStop=
-		new GraphButton("Stop","images/stop.gif","images/stop2.gif");
+		new GraphButton("Stop","img/stop.gif","img/stop2.gif");
   private TextField textCycle=new TextField(7);
-  // éléments de réglage
+  // Ã©lÃ©ments de rÃ©glage
   private Button boutonInstaller=new Button("Installer");
   private CheckboxGroup group=new CheckboxGroup();
   private Checkbox checkDebug=new Checkbox("Debug",group,false);
@@ -46,9 +46,9 @@ implements WindowListener,ActionListener,Runnable
   public boolean[] charges=new boolean[2];
   // programme ayantle trait
   private int trait;
-  // indique que l'on doit arrêter les programmes
+  // indique que l'on doit arrÃªter les programmes
   private boolean pause;
-  // thread pour exécution des programmes (mode Trace)
+  // thread pour exÃ©cution des programmes (mode Trace)
   private Thread thread;
 
 	// constructeur
@@ -67,12 +67,12 @@ implements WindowListener,ActionListener,Runnable
   	setBackground(Color.lightGray);
     setLayout(new BorderLayout(5,5));
     // on instancie les consoles
-    consoles[OUEST]=new Console(this,OUEST,"images/rouge.gif");
-    consoles[EST]=new Console(this,EST,"images/vert.gif");
-    // création de la barre
-		PanelImage barre=new PanelImage("images/chantier.gif");
+    consoles[OUEST]=new Console(this,OUEST,"img/rouge.gif");
+    consoles[EST]=new Console(this,EST,"img/vert.gif");
+    // crÃ©ation de la barre
+		PanelImage barre=new PanelImage("img/chantier.gif");
 		barre.setLayout(new GridBagLayout());
-    // création de la barre de navigation
+    // crÃ©ation de la barre de navigation
     Panel barreNavig=new Panel();
     barreNavig.setLayout(new FlowLayout(FlowLayout.CENTER,5,5));
     barreNavig.add(boutonStep);
@@ -82,7 +82,7 @@ implements WindowListener,ActionListener,Runnable
     barreNavig.add(textCycle);
     ajouter(barre,barreNavig,0,0,1,1,GridBagConstraints.NONE,
 			GridBagConstraints.WEST,1,1);
-    // création de la barre d'installation
+    // crÃ©ation de la barre d'installation
 		Panel barreInstal=new Panel();
     barreInstal.setLayout(new FlowLayout(FlowLayout.CENTER,5,5));
     barreInstal.add(boutonInstaller);
@@ -94,7 +94,7 @@ implements WindowListener,ActionListener,Runnable
     barreInstal.add(textClic);
     ajouter(barre,barreInstal,1,0,1,1,GridBagConstraints.NONE,
 			GridBagConstraints.EAST,1,1);
-    // on modifie l'état de composants
+    // on modifie l'Ã©tat de composants
     boutonStep.setEnabled(false);
     boutonRun.setEnabled(false);
     boutonPause.setEnabled(false);
@@ -106,7 +106,7 @@ implements WindowListener,ActionListener,Runnable
     add("Center",plateau);
     add("West",consoles[OUEST]);
     add("East",consoles[EST]);
-    // on packe la fenètre et on la centre à l'écran
+    // on packe la fenÃ¨tre et on la centre Ã  l'Ã©cran
     pack();
 		setResizable(false);
     Dimension a=getToolkit().getScreenSize();
@@ -148,7 +148,7 @@ implements WindowListener,ActionListener,Runnable
   // installation des programmes
   public void installer(int[] adresses,int distance,int nul,int trait)
   {
-  	// si placement aléatoire, on appelle le placement aléatoire
+  	// si placement alÃ©atoire, on appelle le placement alÃ©atoire
 		if(adresses==null) adresses=moteur.placer();
     // on installe les programmes
     for(int i=0;i<2;i++)
@@ -160,7 +160,7 @@ implements WindowListener,ActionListener,Runnable
         	adresses[i],adresses[i]);
       }
     }
-    // on fixe les caractéristiques du moteur (distance et nul)
+    // on fixe les caractÃ©ristiques du moteur (distance et nul)
     moteur.setCaracteristiques(distance,nul,trait);
     // on affiche les IP des programmes
     for(int i=0;i<2;i++) if(charges[i]) consoles[i].setIP(adresses[i]);
@@ -169,7 +169,7 @@ implements WindowListener,ActionListener,Runnable
     // on enregistre les infos
     this.trait=trait;
     consoles[trait].setTrait(true);
-    // on désactive les boutons de chargement et installation
+    // on dÃ©sactive les boutons de chargement et installation
     boutonInstaller.setEnabled(false);
     for(int i=0;i<2;i++) consoles[i].desactiver();
     // on active les boutons de navigation
@@ -178,7 +178,7 @@ implements WindowListener,ActionListener,Runnable
     boutonStop.setEnabled(true);
   }
 
-	// avance le déroulement du programme d'un pas
+	// avance le dÃ©roulement du programme d'un pas
   private void step()
   {
   	// on intercepte une RuntimeError (crash d'un programme)
@@ -186,11 +186,11 @@ implements WindowListener,ActionListener,Runnable
     {
     	// on enregistre l'ancienne IP
     	int oldIP=moteur.getIP(trait);
-      // on fait un pas et récupère l'IP (0) et l'adresse à updater (1)
+      // on fait un pas et rÃ©cupÃ¨re l'IP (0) et l'adresse Ã  updater (1)
     	int[] rens=moteur.step(trait);
-      // on met à jour le numéro du cycle et le plateau
+      // on met Ã  jour le numÃ©ro du cycle et le plateau
       textCycle.setText(Integer.toString(moteur.getCycle()));
-			// on met à jour le plateau
+			// on met Ã  jour le plateau
       plateau.miseAjour(trait,rens[1],1,rens[0],oldIP);
       // on update les consoles
       consoles[trait].setIP(rens[0]);
@@ -204,7 +204,7 @@ implements WindowListener,ActionListener,Runnable
       suivant();
       consoles[trait].setTrait(true);
     }
-    // si une erreur à été interceptée on affiche une fenètre
+    // si une erreur Ã  Ã©tÃ© interceptÃ©e on affiche une fenÃ¨tre
     catch(RuntimeErrorException e)
     {
       // on inhibe les boutons de navigation
@@ -212,16 +212,16 @@ implements WindowListener,ActionListener,Runnable
     	boutonRun.setEnabled(false);
     	boutonPause.setEnabled(false);
       boutonStop.setEnabled(true);
-			// on prépare le message
+			// on prÃ©pare le message
     	String[] message=new String[2];
       StringTokenizer tokenizer=new StringTokenizer(e.toString(),":");
       for(int i=0;i<2;i++) message[i]=tokenizer.nextToken();
-			// on affiche la fenètre
+			// on affiche la fenÃ¨tre
     	InfoDialog.afficher(this,"Fin du match :",message);
     }
   }
 
-  // lance le thread d'exécution des programmes
+  // lance le thread d'exÃ©cution des programmes
   private void start()
   {
   	thread=new Thread(this);
@@ -255,7 +255,7 @@ implements WindowListener,ActionListener,Runnable
 	// mode debug
 	private void debug(int clic)
 	{
-		// on désactive tous les boutons sauf la pause
+		// on dÃ©sactive tous les boutons sauf la pause
 		boutonStep.setEnabled(false);
 		boutonRun.setEnabled(false);
 		boutonStop.setEnabled(false);
@@ -263,18 +263,18 @@ implements WindowListener,ActionListener,Runnable
 		// on intercepte une RuntimeError (crash d'un programme)
   	try
     {
-			// on désarme l'indicateur de pause
+			// on dÃ©sarme l'indicateur de pause
 			pause=false;
 			// on boucle tant que pas de pause et pas de nul
 			while(!pause && moteur.getCycle()<moteur.nul)
 			{
 				// on enregistre l'ancienne IP
 				int oldIP=moteur.getIP(trait);
-				// on fait un pas et récupère l'IP (0) et l'adresse à updater (1)
+				// on fait un pas et rÃ©cupÃ¨re l'IP (0) et l'adresse Ã  updater (1)
 				int[] rens=moteur.step(trait);
-				// on met à jour le numéro du cycle et le plateau
+				// on met Ã  jour le numÃ©ro du cycle et le plateau
 				textCycle.setText(Integer.toString(moteur.getCycle()));
-				// on met à jour le plateau
+				// on met Ã  jour le plateau
 				plateau.miseAjour(trait,rens[1],1,rens[0],oldIP);
 				// on update les consoles
 				consoles[trait].setIP(rens[0]);
@@ -294,7 +294,7 @@ implements WindowListener,ActionListener,Runnable
 			// si nul
 			if(moteur.getCycle()>=moteur.nul)
 			{
-				// on actualise l'état des boutons
+				// on actualise l'Ã©tat des boutons
 				boutonStep.setEnabled(false);
 				boutonRun.setEnabled(false);
 				boutonStop.setEnabled(true);
@@ -302,7 +302,7 @@ implements WindowListener,ActionListener,Runnable
 				// on affiche la fenetre de partie nulle
       	fenetreNul();
 			}
-			// sinon on réactive les boutons
+			// sinon on rÃ©active les boutons
 			else
 			{
 				boutonStep.setEnabled(true);
@@ -311,7 +311,7 @@ implements WindowListener,ActionListener,Runnable
 				boutonPause.setEnabled(false);
 			}
     }
-    // si une erreur à été interceptée on affiche une fenètre
+    // si une erreur Ã  Ã©tÃ© interceptÃ©e on affiche une fenÃ¨tre
     catch(RuntimeErrorException e)
     {
       // on inhibe les boutons de navigation
@@ -319,19 +319,19 @@ implements WindowListener,ActionListener,Runnable
     	boutonRun.setEnabled(false);
     	boutonPause.setEnabled(false);
       boutonStop.setEnabled(true);
-			// on prépare le message
+			// on prÃ©pare le message
     	String[] message=new String[2];
       StringTokenizer tokenizer=new StringTokenizer(e.toString(),":");
       for(int i=0;i<2;i++) message[i]=tokenizer.nextToken();
-			// on affiche la fenètre
+			// on affiche la fenÃ¨tre
     	InfoDialog.afficher(this,"Fin du match :",message);
     }
 	}
 
-  // trace l'exécution du programme
+  // trace l'exÃ©cution du programme
   private void trace(int clic)
   {
-		// on désactive tous les boutons sauf la pause
+		// on dÃ©sactive tous les boutons sauf la pause
 		boutonStep.setEnabled(false);
 		boutonRun.setEnabled(false);
 		boutonStop.setEnabled(false);
@@ -339,16 +339,16 @@ implements WindowListener,ActionListener,Runnable
 		// on intercepte une RuntimeError (crash d'un programme)
 		try
 		{
-			// on désarme l'indicateur de pause
+			// on dÃ©sarme l'indicateur de pause
 			pause=false;
 			// on boucle tant que pas de pause et pas de nul
 			while(!pause && moteur.getCycle()<moteur.nul)
 			{
 				// on enregistre l'ancienne IP
 				int oldIP=moteur.getIP(trait);
-				// on fait un pas et récupère l'IP (0) et l'adresse à updater (1)
+				// on fait un pas et rÃ©cupÃ¨re l'IP (0) et l'adresse Ã  updater (1)
 				int[] rens=moteur.step(trait);
-				// on met à jour le numéro du cycle et le plateau
+				// on met Ã  jour le numÃ©ro du cycle et le plateau
 				textCycle.setText(Integer.toString(moteur.getCycle()));
 				plateau.miseAjour(trait,rens[1],1,rens[0],oldIP);
 				consoles[trait].setIP(rens[0]);
@@ -369,10 +369,10 @@ implements WindowListener,ActionListener,Runnable
           consoles[i].setTrait(i==trait);
         }
       }
-			// si nul on désactive les boutons
+			// si nul on dÃ©sactive les boutons
 			if(moteur.getCycle()>=moteur.nul)
 			{
-				// on actualise l'état des boutons
+				// on actualise l'Ã©tat des boutons
 				boutonStep.setEnabled(false);
 				boutonRun.setEnabled(false);
 				boutonStop.setEnabled(true);
@@ -380,7 +380,7 @@ implements WindowListener,ActionListener,Runnable
 				// on affiche la fenetre de partie nulle
       	fenetreNul();
 			}
-			// sinon on réactive les boutons
+			// sinon on rÃ©active les boutons
 			else
 			{
 				boutonStep.setEnabled(true);
@@ -389,7 +389,7 @@ implements WindowListener,ActionListener,Runnable
 				boutonPause.setEnabled(false);
 			}
 		}
-		// si une erreur à été interceptée on affiche une fenètre d'erreur
+		// si une erreur Ã  Ã©tÃ© interceptÃ©e on affiche une fenÃ¨tre d'erreur
 		catch(RuntimeErrorException e)
 		{
 			// on inhibe les boutons de navigation
@@ -410,11 +410,11 @@ implements WindowListener,ActionListener,Runnable
       }
 			// on actualise les dumps des consoles
 			for(int i=0;i<2;i++) if(charges[i]) consoles[i].dump(moteur.getIP(i));
-			// on prépare le message d'erreur
+			// on prÃ©pare le message d'erreur
 			String[] message=new String[2];
 			StringTokenizer tokenizer=new StringTokenizer(e.toString(),":");
 			for(int i=0;i<2;i++) message[i]=tokenizer.nextToken();
-			// on affiche la fenètre
+			// on affiche la fenÃ¨tre
 			InfoDialog.afficher(this,"Fin du match :",message);
 		}
   }
@@ -422,7 +422,7 @@ implements WindowListener,ActionListener,Runnable
   // mode turbo
   private void turbo()
   {
-		// on désactive le marqueur de pause
+		// on dÃ©sactive le marqueur de pause
 		pause=false;
   	// on intercepte une RuntimeError (crash d'un programme)
   	try
@@ -446,14 +446,14 @@ implements WindowListener,ActionListener,Runnable
         }
       }
       textCycle.setText(Integer.toString(moteur.getCycle()));
-      // on affiche le contenu de la mémoire
+      // on affiche le contenu de la mÃ©moire
       int[] ip={(charges[0]?moteur.getIP(0):-1),
       	(charges[1]?moteur.getIP(1):-1)};
       plateau.miseAjourTurbo(ip);
 			// on examine si la partie est nulle
       if(moteur.getCycle()>=moteur.nul)
       {
-				// on actualise l'état des boutons
+				// on actualise l'Ã©tat des boutons
 				boutonStep.setEnabled(false);
 				boutonRun.setEnabled(false);
 				boutonStop.setEnabled(true);
@@ -463,17 +463,17 @@ implements WindowListener,ActionListener,Runnable
       }
 			// sinon (pause)
 			{
-				// on actualise l'état des boutons
+				// on actualise l'Ã©tat des boutons
 				boutonStep.setEnabled(true);
 				boutonRun.setEnabled(true);
 				boutonStop.setEnabled(true);
 				boutonPause.setEnabled(false);
 			}
     }
-    // si une erreur à été interceptée on affiche une fenètre
+    // si une erreur Ã  Ã©tÃ© interceptÃ©e on affiche une fenÃ¨tre
     catch(RuntimeErrorException e)
     {
-			// on actualise l'état des boutons
+			// on actualise l'Ã©tat des boutons
       boutonStep.setEnabled(false);
     	boutonRun.setEnabled(false);
     	boutonStop.setEnabled(true);
@@ -490,20 +490,20 @@ implements WindowListener,ActionListener,Runnable
         }
       }
       textCycle.setText(Integer.toString(moteur.getCycle()));
-      // on affiche le contenu de la mémoire
+      // on affiche le contenu de la mÃ©moire
       int[] ip={(charges[0]?moteur.getIP(0):-1),
       	(charges[1]?moteur.getIP(1):-1)};
       plateau.miseAjourTurbo(ip);
-			// on prépare le message
+			// on prÃ©pare le message
     	String[] message=new String[2];
       StringTokenizer tokenizer=new StringTokenizer(e.toString(),":");
       for(int i=0;i<2;i++) message[i]=tokenizer.nextToken();
-			// on affiche la fenètre
+			// on affiche la fenÃ¨tre
     	InfoDialog.afficher(this,"Fin du match :",message);
     }
   }
 
-  // affiche une fenètre indiquant une partie nulle
+  // affiche une fenÃ¨tre indiquant une partie nulle
   private void fenetreNul()
   {
   	String[] message={"La partie est nulle","pas de crash au cycle",
@@ -511,15 +511,15 @@ implements WindowListener,ActionListener,Runnable
     InfoDialog.afficher(this,"Partie nulle",message);
   }
 
-  // arrêt des programmes
+  // arrÃªt des programmes
   private void pause() {pause=true;}
 
-  // réinitialisation du plateau
+  // rÃ©initialisation du plateau
   private void stop()
   {
-    // on remet à zéro les compteurs
+    // on remet Ã  zÃ©ro les compteurs
     textCycle.setText("0");
-    // on réactive les concoles
+    // on rÃ©active les concoles
     for(int i=0;i<2;i++)
     {
     	consoles[i].reactiver();
@@ -529,7 +529,7 @@ implements WindowListener,ActionListener,Runnable
         consoles[i].setTrait(false);
       }
     }
-    // on actualise l'état des boutons
+    // on actualise l'Ã©tat des boutons
     boutonStep.setEnabled(false);
    	boutonRun.setEnabled(false);
    	boutonStop.setEnabled(false);
@@ -543,14 +543,14 @@ implements WindowListener,ActionListener,Runnable
   // fait changer le trait
   private void suivant() {do {trait=(trait+1)%2;} while(!charges[trait]);}
 
-	// méthode show surchargée pour créer l'image du plateau
+	// mÃ©thode show surchargÃ©e pour crÃ©er l'image du plateau
 	public void show()
 	{
 		plateau.creerImage();
 		super.show();
 	}
 
-  // appelé lorsqu'on clique sur un bouton
+  // appelÃ© lorsqu'on clique sur un bouton
 	public void actionPerformed(ActionEvent evt)
   {
 		String cmd=evt.getActionCommand();
@@ -587,7 +587,7 @@ implements WindowListener,ActionListener,Runnable
   public void windowActivated(WindowEvent e) {}
   public void windowDeactivated(WindowEvent e) {}
 
-  // méthode d'ajout d'un composant au GradBagLayout
+  // mÃ©thode d'ajout d'un composant au GradBagLayout
 	public static void ajouter(Container container,Component component,
 		int gridx,int gridy,int gridwidth,int gridheight,int fill,
 		int anchor,int weightx,int weighty)

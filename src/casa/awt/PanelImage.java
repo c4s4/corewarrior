@@ -19,10 +19,10 @@ public class PanelImage extends Panel
 		catch(InterruptedException e) {e.printStackTrace();}
 	}
 	
-	// méthode update surclassée ne repaint pas le fond
+	// mÃ©thode update surclassÃ©e ne repaint pas le fond
 	public void update(Graphics g)
 	{
-		// on appelle la méthode paint()
+		// on appelle la mÃ©thode paint()
 		paint(g);
 	}
 	

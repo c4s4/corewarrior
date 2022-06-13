@@ -4,11 +4,11 @@ import java.awt.*;
 
 public class Plateau extends Canvas
 {
-	// références de la fenetre
+	// rÃ©fÃ©rences de la fenetre
   private Fenetre fenetre;
 	// dimensions du plateau
   private static final int LARGEUR=64,HAUTEUR=64;
-  // coté d'une case
+  // cotÃ© d'une case
   private static final int COTE=7;
   // image du plateau
   public Image image;
@@ -22,7 +22,7 @@ public class Plateau extends Canvas
   private int ordre;
   // constantes pour ordre
   private static final int NETTOYER=0,UPDATE=1;
-  // ip des programmes pour mise à jour turbo
+  // ip des programmes pour mise Ã  jour turbo
   int[] ip;
 
   // constructeur du plateau
@@ -31,7 +31,7 @@ public class Plateau extends Canvas
 		this.fenetre=fenetre;
 	}
 
-  // méthode update surchargée
+  // mÃ©thode update surchargÃ©e
   public void update(Graphics g) {paint(g);}
 
   // affichage du plateau
@@ -40,13 +40,13 @@ public class Plateau extends Canvas
   	g.drawImage(image,0,0,this);
   }
 
-  // création de l'image pour double buffering
+  // crÃ©ation de l'image pour double buffering
   public void creerImage()
   {
 		if(image==null)
 		{
 			image=createImage(LARGEUR*COTE,HAUTEUR*COTE);
-			// on attend la création de l'image
+			// on attend la crÃ©ation de l'image
 			MediaTracker tracker=new MediaTracker(this);
 			tracker.addImage(image,0);
 			try {tracker.waitForID(0);}
@@ -99,7 +99,7 @@ public class Plateau extends Canvas
 		repaint();
   }
 
-  // mise à jour du plateau
+  // mise Ã  jour du plateau
   public void miseAjour(int couleur,int adresse,int longueur,int ip,int oldIP)
   {
   	if(adresse>=0) for(int i=0;i<longueur;i++) dessiner(couleur,adresse+i);
@@ -130,7 +130,7 @@ public class Plateau extends Canvas
     g.fillRect(x+2,y+2,COTE-4,COTE-4);
   }
 
-  // retourne les dimensions souhaitées
+  // retourne les dimensions souhaitÃ©es
 	public Dimension getPreferredSize() 
 		{return new Dimension(LARGEUR*COTE,HAUTEUR*COTE);}
 
@@ -138,7 +138,7 @@ public class Plateau extends Canvas
 	public Dimension getMinimumSize()
 		{return new Dimension(LARGEUR*COTE,HAUTEUR*COTE);}
 
-  // retourne les dimensions souhaitées
+  // retourne les dimensions souhaitÃ©es
 	public Dimension getMaximumSize()
 		{return new Dimension(LARGEUR*COTE,HAUTEUR*COTE);}
 }

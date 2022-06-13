@@ -13,73 +13,73 @@ public final class Moteur implements Runnable
   // indique si on doit quitter en cas d'erreur (mode texte)
   private boolean exit;
 
-  // taille de la mémoire pour le jeu
+  // taille de la mÃ©moire pour le jeu
   public static final int TAILLE=4096;
-	// valeur du mode d'adressage immédiat
+	// valeur du mode d'adressage immÃ©diat
   private static final int DIRECT=0;
   // valeur du mode d'adressage relatif
   private static final int RELATIF=1;
   // valeur du mode d'adressage indirect
   private static final int INDIRECT=2;
-  // valeur des différentes mnémonics
+  // valeur des diffÃ©rentes mnÃ©monics
   private static final int
   	DAT=0,MOV=1,ADD=2,SUB=3,JMP=4,JMZ=5,JMG=6,DJZ=7,CMP=8;
 
-  // trace des instructions à l'écran (mode texte)
+  // trace des instructions Ã  l'Ã©cran (mode texte)
   private boolean tracer=false;
-  // dump mémoire autour de l'instruction du crash (mode texte)
+  // dump mÃ©moire autour de l'instruction du crash (mode texte)
   private boolean etat=false;
 
-  // mémoire pour le jeu
+  // mÃ©moire pour le jeu
   private int[] memoire=new int[TAILLE];
-  // nombre de programmes en mémoire (2 en mode graphique)
+  // nombre de programmes en mÃ©moire (2 en mode graphique)
   private int nombre;
-  // IP des programmes en mémoire
+  // IP des programmes en mÃ©moire
   private int[] IP;
-  // numéro du cycle actuel
+  // numÃ©ro du cycle actuel
   private int cycle;
-  // programmes en mémoire (2 en mode graphique)
+  // programmes en mÃ©moire (2 en mode graphique)
   public int[][] prog;
-  // noms des programmes en mémoire (2 en mode graphique)
+  // noms des programmes en mÃ©moire (2 en mode graphique)
   public String[] noms;
-  // indique que l'on doit arrêter l'exécution (en mode texte)
+  // indique que l'on doit arrÃªter l'exÃ©cution (en mode texte)
   private boolean stop;
-  // thread de l'exécution du programme (en mode texte)
+  // thread de l'exÃ©cution du programme (en mode texte)
   private Thread thread;
   // temps d'attente entre 2 cycles (en ms) (en mode texte)
   private int temps;
-  // trait (numéro du prog exécutant la prochaine instruction (en mode texte)
+  // trait (numÃ©ro du prog exÃ©cutant la prochaine instruction (en mode texte)
   private int trait;
-  // distance minimale entre deux programmes en mémoire
+  // distance minimale entre deux programmes en mÃ©moire
   private int distance=100;
   // nombre de cycles avant partie nulle
   public int nul=1000000;
-  // indique l'adresse d'une case modifiée par un MOV
+  // indique l'adresse d'une case modifiÃ©e par un MOV
   private int modif;
-  // indique si on doit enregistrer les cases modifiées (mode graphique)
+  // indique si on doit enregistrer les cases modifiÃ©es (mode graphique)
   private boolean log;
 
-  // méthode main pour lancement de la ligne de commande
+  // mÃ©thode main pour lancement de la ligne de commande
 	public static void main(String[] args)
 	{
   	// si le nombre d'arguments est nul : mode graphique
     if(args.length==0)
     {
-			// on crée une instance graphique du moteur
+			// on crÃ©e une instance graphique du moteur
   		Moteur moteur=new Moteur();
-			// on crée une instance de la fenètre
+			// on crÃ©e une instance de la fenÃ¨tre
 			Fenetre fenetre=new Fenetre(moteur,true);
-			// on affiche la fenètre de visualisation
+			// on affiche la fenÃ¨tre de visualisation
 			fenetre.show();
 			// on affiche le splash screen
-			DialogApropos.afficher(fenetre,"images/aPropos.gif");
+			DialogApropos.afficher(fenetre,"img/aPropos.gif");
     }
     // sinon, mode texte : les arguments sont les programmes
     else
     {
-    	// on crée une instance du moteur
+    	// on crÃ©e une instance du moteur
       Moteur moteur=new Moteur(args);
-      // on lance l'exécution des programmes
+      // on lance l'exÃ©cution des programmes
 	    moteur.start();
     }
 	}
@@ -89,15 +89,15 @@ public final class Moteur implements Runnable
 	{
   	// on quitte en cas d'erreur
   	exit=true;
-    // on lit les options de la ligne de commande et on les élimine
+    // on lit les options de la ligne de commande et on les Ã©limine
     args=options(args);
     // on enregistre le nombre de programmes
     nombre=args.length;
-    // création du tableau des IP
+    // crÃ©ation du tableau des IP
     IP=new int[nombre];
-   	// création des tableaux d'int pour les programmes
+   	// crÃ©ation des tableaux d'int pour les programmes
     prog=new int[nombre][];
-    // création du tableau du nom des programmes
+    // crÃ©ation du tableau du nom des programmes
     noms=new String[nombre];
     // on charge les programmes
     for(int i=0;i<nombre;i++)
@@ -109,11 +109,11 @@ public final class Moteur implements Runnable
         if(exit) System.exit(-1);
       }
     }
-    // on fixe le temps d'attente à 0
+    // on fixe le temps d'attente Ã  0
     temps=0;
-    // on détermine la place des programmes en mémoire
+    // on dÃ©termine la place des programmes en mÃ©moire
     int[] adresses=placer();
-    // on installe les programmes en mémoire
+    // on installe les programmes en mÃ©moire
     for(int i=0;i<nombre;i++)
     {
     	installer(i,adresses[i]);
@@ -129,29 +129,29 @@ public final class Moteur implements Runnable
   	exit=false;
 		// on enregistre le nombre de programmes
     nombre=2;
-    // création du tableau des IP
+    // crÃ©ation du tableau des IP
     IP=new int[nombre];
-   	// création des tableaux d'int pour les programmes
+   	// crÃ©ation des tableaux d'int pour les programmes
     prog=new int[nombre][];
-    // création du tableau du nom des programmes
+    // crÃ©ation du tableau du nom des programmes
     noms=new String[nombre];
-    // on doit enregistrer les cases modifiées
+    // on doit enregistrer les cases modifiÃ©es
     log=true;
 	}
 
-  // réinitialise le moteur
+  // rÃ©initialise le moteur
   public void nettoyer()
   {
-  	// on réinitialise les variables
+  	// on rÃ©initialise les variables
   	cycle=0;
-    // on vide la mémoire
+    // on vide la mÃ©moire
     for(int i=0;i<memoire.length;i++) memoire[i]=0;
   }
 
   // lit les options de la ligne de commande
   private String[] options(String[] args)
   {
-  	// indice du premier paramètre qui n'est pas une option
+  	// indice du premier paramÃ¨tre qui n'est pas une option
     int indice=0;
   	while(args[indice].startsWith("-") || args[indice].startsWith("+"))
 		{
@@ -166,13 +166,13 @@ public final class Moteur implements Runnable
       }
       indice++;
     }
-    // on élimine les options de la ligne de commande
+    // on Ã©limine les options de la ligne de commande
     String[] fichiers=new String[args.length-indice];
     System.arraycopy(args,indice,fichiers,0,fichiers.length);
     return fichiers;
   }
 
-  // charge un programme en mémoire
+  // charge un programme en mÃ©moire
   public void charger(int index,String chemin)
   throws IOException
   {
@@ -181,7 +181,7 @@ public final class Moteur implements Runnable
     int fin=chemin.lastIndexOf(".");
 		if(fin==-1) fin=chemin.length();
     noms[index]=chemin.substring(debut,fin);
-   	// on lit la taille du fichier et on crée le tableau
+   	// on lit la taille du fichier et on crÃ©e le tableau
    	File fichier=new File(chemin);
    	int longueur=(int)(fichier.length()/4);
 		prog[index]=new int[longueur];
@@ -193,10 +193,10 @@ public final class Moteur implements Runnable
 		entree.close();
   }
 
-  // envoie des adresses pour le placement aléatoire des programmes
+  // envoie des adresses pour le placement alÃ©atoire des programmes
 	public int[] placer()
   {
-  	// on crée les tableaux pour le placement et la taille des programmes
+  	// on crÃ©e les tableaux pour le placement et la taille des programmes
 		int[] place=new int[nombre];
     // on place les programmes
     Random ran=new Random();
@@ -228,17 +228,17 @@ public final class Moteur implements Runnable
     return place;
   }
 
-  // installation d'un programme en mémoire
+  // installation d'un programme en mÃ©moire
   public void installer(int index,int adresse)
   {
    	// on fixe l'IP du programme
     IP[index]=adresse;
-    // on recopie le programme en mémoire
+    // on recopie le programme en mÃ©moire
     for(int i=0;i<prog[index].length;i++)
     	memoire[(adresse+i)%TAILLE]=prog[index][i];
   }
 
-  // désassemble un programme
+  // dÃ©sassemble un programme
   public String[] programme(int couleur)
   {
   	if(prog[couleur]==null) return null;
@@ -258,10 +258,10 @@ public final class Moteur implements Runnable
     thread.start();
   }
 
-  // arrêt de l'exécution des programmes
+  // arrÃªt de l'exÃ©cution des programmes
   public void stop() {stop=true;}
 
-  // avance l'exécution du programme d'un pas (retourne la nouvelle IP)
+  // avance l'exÃ©cution du programme d'un pas (retourne la nouvelle IP)
   public int[] step(int trait) throws RuntimeErrorException
   {
   	modif=-1;
@@ -273,7 +273,7 @@ public final class Moteur implements Runnable
     return rens;
   }
 
-  // avance l'exécution du programme d'un pas (retourne la nouvelle IP)
+  // avance l'exÃ©cution du programme d'un pas (retourne la nouvelle IP)
   public void turbo(int trait) throws RuntimeErrorException
   {
   	log=false;
@@ -282,16 +282,16 @@ public final class Moteur implements Runnable
     log=true;
   }
 
-  // méthode run() du thread d'exécution des programmes
+  // mÃ©thode run() du thread d'exÃ©cution des programmes
   public void run()
   {
 		// initialisations pour tracage des programmes
   	if(tracer) traceInit();
-		// on boucle tant que le programme n'est pas arreté et que pas de nul
+		// on boucle tant que le programme n'est pas arretÃ© et que pas de nul
   	while(!stop && cycle<nul)
     {
     	if(tracer) tracer(trait);
-			// on essaie d'exécuter la prochaine instruction
+			// on essaie d'exÃ©cuter la prochaine instruction
     	try {executer(trait);}
 			// on intercepte une erreur runtime
       catch(RuntimeErrorException e)
@@ -311,12 +311,12 @@ public final class Moteur implements Runnable
     System.out.println("Partie nulle : pas de crash en "+nul+" cycles");
   }
 
-  // exécution d'une instruction du programme ayant le trait
+  // exÃ©cution d'une instruction du programme ayant le trait
   private void executer(int trait) throws RuntimeErrorException
   {
-  	// on détermine l'ip
+  	// on dÃ©termine l'ip
     int ip=IP[trait];
-		// on extrait l'instruction à exécuter
+		// on extrait l'instruction Ã  exÃ©cuter
     int code=memoire[ip];
     // on extrait les mnemonic et arguments
     int mnemonic=mnemonic(code);
@@ -335,7 +335,7 @@ public final class Moteur implements Runnable
       case JMG : jmg(trait,ip,arg1,mod1,arg2,mod2); break;
       case DJZ : djz(trait,ip,arg1,mod1,arg2,mod2); break;
       case CMP : cmp(trait,ip,arg1,mod1,arg2,mod2); break;
-			// on tente d'exécuter un DAT
+			// on tente d'exÃ©cuter un DAT
       default : throw new RuntimeErrorException(
       	"Tentative d'execution d'un DAT",noms[trait],ip,cycle);
     }
@@ -443,7 +443,7 @@ public final class Moteur implements Runnable
   private int valeur(int trait,int ip,int arg,int mod)
   throws RuntimeErrorException
   {
-		// mode d'adressage immédiat
+		// mode d'adressage immÃ©diat
   	if(mod==DIRECT) return arg;
 		// mode d'adressage relatif
     else if(mod==RELATIF)
@@ -456,7 +456,7 @@ public final class Moteur implements Runnable
 		// mode d'adressage indirect
     else
     {
-    	// si l'adresse pointée n'est pas un DAT : erreur indirection
+    	// si l'adresse pointÃ©e n'est pas un DAT : erreur indirection
       int adresse=(ip+arg)%TAILLE;
       if(mnemonic(memoire[adresse])!=DAT) throw new
       	RuntimeErrorException("Erreur d'indirection",noms[trait],ip,cycle);
@@ -472,7 +472,7 @@ public final class Moteur implements Runnable
   private int contenu(int trait,int ip,int arg,int mod)
   throws RuntimeErrorException
   {
-		// mode immédiat
+		// mode immÃ©diat
   	if(mod==DIRECT) return arg << 14;
 		// mode relatif
     else if(mod==RELATIF)
@@ -483,7 +483,7 @@ public final class Moteur implements Runnable
 		// mode indirect
     else
     {
-    	// si l'adresse pointée n'est pas un DAT : erreur indirection
+    	// si l'adresse pointÃ©e n'est pas un DAT : erreur indirection
       int adresse=(ip+arg)%TAILLE;
       if(mnemonic(memoire[adresse])!=DAT) throw new RuntimeErrorException(
 				"Erreur d'indirection",noms[trait],ip,cycle);
@@ -497,7 +497,7 @@ public final class Moteur implements Runnable
   private int adresse(int trait,int ip,int arg,int mod)
   throws RuntimeErrorException
   {
-		// mode d'adressage immédiat
+		// mode d'adressage immÃ©diat
   	if(mod==DIRECT) return arg;
 		// mode d'adressage relatif
     else if(mod==RELATIF)
@@ -508,7 +508,7 @@ public final class Moteur implements Runnable
 		// mode d'adressage indirect
     else
     {
-    	// si l'adresse pointée n'est pas un DAT : erreur indirection
+    	// si l'adresse pointÃ©e n'est pas un DAT : erreur indirection
       int adresse=(ip+arg)%TAILLE;
       if(mnemonic(memoire[adresse])!=DAT) throw new
       	RuntimeErrorException("Erreur d'indirection",noms[trait],ip,cycle);
@@ -518,13 +518,13 @@ public final class Moteur implements Runnable
     }
   }
 
-  // incrémente l'IP pour la faire pointer vers l'adresse suivante
+  // incrÃ©mente l'IP pour la faire pointer vers l'adresse suivante
 	private void increment(int trait)
   {
   	IP[trait]=(IP[trait]+1)%TAILLE;
   }
 
-  // affichage du début de la trace
+  // affichage du dÃ©but de la trace
 	private void traceInit()
   {
   	StringBuffer ligne=new StringBuffer("cycle   ");
@@ -532,22 +532,22 @@ public final class Moteur implements Runnable
     System.out.println(ligne.toString());
   }
 
-  // trace l'instruction en cours d'exécution
+  // trace l'instruction en cours d'exÃ©cution
   private void tracer(int trait)
   {
-  	// on passe à la ligne et écrit l'IP si premier programme
+  	// on passe Ã  la ligne et Ã©crit l'IP si premier programme
     if(trait==0)
     {
     	System.out.println();
       System.out.print(zero(cycle,5)+":  ");
     }
-    // on écrit l'instruction
+    // on Ã©crit l'instruction
     int ip=IP[trait];
     System.out.print(completer("["+zero(ip,4)+"] "+
     	desassembler(memoire[ip]),24));
   }
 
-  // complète une chaine jusqu'à la longueur souhaitée
+  // complÃ¨te une chaine jusqu'Ã  la longueur souhaitÃ©e
   private String completer(String chaine,int longueur)
   {
   	int n=longueur-chaine.length();
@@ -556,7 +556,7 @@ public final class Moteur implements Runnable
     return chaine+complement.toString();
   }
 
-  // complète un entier avec le nombre de zéros nécessaires
+  // complÃ¨te un entier avec le nombre de zÃ©ros nÃ©cessaires
   private String zero(int nombre,int longueur)
   {
   	String chaine=Integer.toString(nombre);
@@ -566,12 +566,12 @@ public final class Moteur implements Runnable
     return complement.toString()+chaine;
   }
 
-  // affiche le contenu de la mémoire autour du point de crash
+  // affiche le contenu de la mÃ©moire autour du point de crash
   private void etat(int trait)
   {
-  	// on calcule l'adresse du début du dump
+  	// on calcule l'adresse du dÃ©but du dump
 		int debut=(IP[trait]-10+TAILLE)%TAILLE;
-    // on affiche le contenu des cases mémoire
+    // on affiche le contenu des cases mÃ©moire
     System.out.println();
     for(int i=0;i<21;i++)
     {
@@ -582,7 +582,7 @@ public final class Moteur implements Runnable
     }
   }
 
-  // dump de la mémoire
+  // dump de la mÃ©moire
   public String[] dump(int ip,int etendue)
   {
     String[] dump=new String[etendue];
@@ -591,13 +591,13 @@ public final class Moteur implements Runnable
     return dump;
   }
 
-  // dump de la mémoire
+  // dump de la mÃ©moire
   public String dump(int ip)
   {
     return desassembler(memoire[ip]);
   }
 
-  // désassemblage d'une instruction
+  // dÃ©sassemblage d'une instruction
   private String desassembler(int code)
   {
   	String ligne="";
@@ -613,7 +613,7 @@ public final class Moteur implements Runnable
     return ligne;
   }
 
-  // désassemble une mnémonic
+  // dÃ©sassemble une mnÃ©monic
   private String desassemblerMnemonic(int mnemonic)
   {
   	if(mnemonic==DAT) return "DAT";
@@ -628,20 +628,20 @@ public final class Moteur implements Runnable
     else return "???";
   }
 
-  // désassemble un argument
+  // dÃ©sassemble un argument
   private String desassemblerArgument(int arg,int mod)
   {
   	String chaine="";
-    // on décode le mode
+    // on dÃ©code le mode
     if(mod==DIRECT) chaine+="#";
     else if(mod==INDIRECT) chaine+="@";
-    // on décode la valeur
+    // on dÃ©code la valeur
     if(arg>=TAILLE/2) arg-=TAILLE;
     chaine+=Integer.toString(arg);
     return chaine;
   }
 
-  // fixe les caractéristiques du moteur (distance et nul)
+  // fixe les caractÃ©ristiques du moteur (distance et nul)
   public void setCaracteristiques(int distance,int nul,int trait)
   {
   	this.distance=distance;
@@ -655,6 +655,6 @@ public final class Moteur implements Runnable
   // renvoie l'IP du programme
   public int getIP(int couleur) {return IP[couleur];}
 
-  // renvoie le contenu d'une adresse mémoire
+  // renvoie le contenu d'une adresse mÃ©moire
   public int getMem(int adresse) {return memoire[adresse];}
 }

@@ -11,22 +11,22 @@ import java.lang.reflect.*;
 public class Confirmation extends Dialog 
 implements WindowListener,ActionListener
 {
-	// éléments de l'interface utilisateur
+	// Ã©lÃ©ments de l'interface utilisateur
 	private Button boutonOui=new Button("Oui");
 	private Button boutonNon=new Button("Non");
-	// frame ayant appelé le Dialog
+	// frame ayant appelÃ© le Dialog
 	public Frame frame;
-	// méthodes à appeler
+	// mÃ©thodes Ã  appeler
 	private Method methodeOui;
 	private Method methodeNon;
 	
-	// constructeur : crée et ajoute les composants de l'interface
+	// constructeur : crÃ©e et ajoute les composants de l'interface
 	public Confirmation(Frame frame,String titre,String[] lignes,
 	String methodeOui,String methodeNon,String image)
 	{
 		super(frame,titre,true);
 		this.frame=frame;
-		// on recherche les méthodes Oui et Non
+		// on recherche les mÃ©thodes Oui et Non
 		if(methodeOui!=null)
 		{
 			try {this.methodeOui=frame.getClass().getMethod(methodeOui,new Class[0]);}
@@ -50,7 +50,7 @@ implements WindowListener,ActionListener
 		panelBoutons.add(boutonOui);
 		panelBoutons.add(boutonNon);
 		add("South",panelBoutons);
-		// on ajoute le dessin à gauche
+		// on ajoute le dessin Ã  gauche
 		Dessin dessin=new Dessin(image);
 		add("West",dessin);
 		// on pack le Dialog et on le centre sur la frame
@@ -65,7 +65,7 @@ implements WindowListener,ActionListener
 		addWindowListener(this);
 	}
 
-	// gestion des évènements
+	// gestion des Ã©vÃ¨nements
 	public void actionPerformed(ActionEvent evt)
 	{
 		String cmd=evt.getActionCommand();
@@ -89,7 +89,7 @@ implements WindowListener,ActionListener
 		}
 	}
 	
-	// méthodes pour implémenter l'interface WindowListener
+	// mÃ©thodes pour implÃ©menter l'interface WindowListener
 	public void windowClosing(WindowEvent evt) 
 	{
 		if(methodeNon!=null)

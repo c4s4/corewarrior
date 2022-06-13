@@ -11,24 +11,24 @@ import casa.awt.*;
 class DialogInstaller extends Dialog
 implements WindowListener,ActionListener
 {
-	// éléments de l'interface graphique
+	// Ã©lÃ©ments de l'interface graphique
   CheckboxGroup groupAdresse=new CheckboxGroup();
-  Checkbox aleatoire=new Checkbox("Aléatoire",groupAdresse,true);
+  Checkbox aleatoire=new Checkbox("AlÃ©atoire",groupAdresse,true);
   Checkbox adresses=new Checkbox("Aux adresses :",groupAdresse,false);
   TextField[] adresse={new TextField("0",4),new TextField("0",4)};
   CheckboxGroup groupTrait=new CheckboxGroup();
-  Checkbox traitAleatoire=new Checkbox("Aléatoire",groupTrait,true);
+  Checkbox traitAleatoire=new Checkbox("AlÃ©atoire",groupTrait,true);
   Checkbox[] traits=new Checkbox[2];
   TextField distance=new TextField("100",4);
   TextField nul=new TextField("1000000",7);
   Button boutonOK=new Button(" OK ");
   Button boutonAnnuler=new Button("Annuler");
-	// référence sur la fenètre affichée
+	// rÃ©fÃ©rence sur la fenÃ¨tre affichÃ©e
 	private static DialogInstaller dialog;
-	// référence à la fenètre du moteur
+	// rÃ©fÃ©rence Ã  la fenÃ¨tre du moteur
 	private static Fenetre fenetre;
 
-	// méthode statique d'invocation
+	// mÃ©thode statique d'invocation
 	public static void afficher(Frame frame)
 	{
 		fenetre=(Fenetre) frame;
@@ -40,7 +40,7 @@ implements WindowListener,ActionListener
 	DialogInstaller(Fenetre fenetre)
 	{
 		super(fenetre,"Installation",true);
-    // calcul du nombre de programmes chargés
+    // calcul du nombre de programmes chargÃ©s
     int nombre=0;
     for(int i=0;i<2;i++)
     	if(fenetre.charges[i]) nombre++;
@@ -91,7 +91,7 @@ implements WindowListener,ActionListener
     barreBoutons.add(boutonAnnuler);
     ajouter(this,barreBoutons,0,6,2,1,
 			GridBagConstraints.NONE,GridBagConstraints.EAST,0,0);
-		// on pack la fenètre et on la recentre
+		// on pack la fenÃ¨tre et on la recentre
 		pack();
 		setResizable(false);
 		Rectangle a=fenetre.getBounds();
@@ -112,7 +112,7 @@ implements WindowListener,ActionListener
 		{
     	try
       {
-    		// on fait la liste des adresses (null si aléatoire)
+    		// on fait la liste des adresses (null si alÃ©atoire)
       	int[] listeAdresses;
       	if(aleatoire.getState()) listeAdresses=null;
       	else
@@ -125,21 +125,21 @@ implements WindowListener,ActionListener
             else listeAdresses[i]=-1;
           }
       	}
-        // on détermine le trait
+        // on dÃ©termine le trait
         int trait;
-        // si deux programmes sont chargés
+        // si deux programmes sont chargÃ©s
         if(fenetre.charges[0] && fenetre.charges[1])
         {
-        	// si trait aléatoire
+        	// si trait alÃ©atoire
         	if(traitAleatoire.getState())
           	trait=(new java.util.Random()).nextInt() & 1;
           // sinon, on lit le choix
           else
         		trait=(traits[0].getState()?0:1);
         }
-        // un seul programme chargé
+        // un seul programme chargÃ©
         else trait=fenetre.charges[0]?0:1;
-        // on récupère la distance et le nul
+        // on rÃ©cupÃ¨re la distance et le nul
         int dist=Integer.parseInt(distance.getText());
         int nulle=Integer.parseInt(nul.getText());
         // on appelle la fonction d'installation des programmes
@@ -166,7 +166,7 @@ implements WindowListener,ActionListener
     }
 	}
 
-	// méthodes pour implémenter l'interface WindowListener
+	// mÃ©thodes pour implÃ©menter l'interface WindowListener
 	public void windowClosing(WindowEvent evt)
 	{
 		fenetre=null;
@@ -179,7 +179,7 @@ implements WindowListener,ActionListener
   public void windowActivated(WindowEvent evt) {}
   public void windowDeactivated(WindowEvent evt) {}
 
-  // méthode d'ajout d'un composant au GradBagLayout
+  // mÃ©thode d'ajout d'un composant au GradBagLayout
 	public static void ajouter(Container container,Component component,
 		int gridx,int gridy,int gridwidth,int gridheight,int fill,
 		int anchor,int weightx,int weighty)

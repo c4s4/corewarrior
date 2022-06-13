@@ -1,7 +1,7 @@
 /********************************************************************
 * Core Warrior 0.0 du 12.6.98 (C) Michel CASABIANCA - casa@sdv.fr   *
 *********************************************************************
-* Editeur : environnement de développement                          *
+* Editeur : environnement de dÃ©veloppement                          *
 ********************************************************************/
 
 package casa.corewarrior.editeur;
@@ -16,14 +16,14 @@ import java.io.*;
 import java.awt.datatransfer.*;
 import java.util.*;
 
-public final class Editeur extends Frame implements 
+public final class Editeur extends Frame implements
 WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 {
 	private static final String version="0.2";
 	private static final String copyright="Core Warrior "+version+" ";
 	// indicateur d'un chargement de fichier
 	private boolean chargement=false;
-	
+
 	// composants de l'interface
 	private static Editeur editeur;
 	private MenuBar menuBar=new MenuBar();
@@ -34,53 +34,53 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 	private MenuItem itemEnregistrerSous=new MenuItem("Enregistrer sous ...");
 	private MenuItem itemSeparateur1=new MenuItem("-");
 	private MenuItem itemQuitter=new MenuItem("Quitter");
-	
+
 	private Menu menuEdition=new Menu("Edition");
 	private MenuItem itemCouper=new MenuItem("Couper");
 	private MenuItem itemCopier=new MenuItem("Copier");
 	private MenuItem itemColler=new MenuItem("Coller");
 	private MenuItem itemSeparateur2=new MenuItem("-");
 	private MenuItem itemRechercher=new MenuItem("Rechercher ...");
-	
+
 	private Menu menuCompiler=new Menu("Compiler");
 	private MenuItem itemCompiler=new MenuItem("Compiler");
 	private MenuItem itemSeparateur3=new MenuItem("-");
-	private MenuItem itemExecuter=new MenuItem("Exécuter");
-	
+	private MenuItem itemExecuter=new MenuItem("ExÃ©cuter");
+
 	private Menu menuAide=new Menu("Aide");
 	private MenuItem itemAide=new MenuItem("Aide");
 	private MenuItem itemFonte=new MenuItem("Fonte");
 	private MenuItem itemSeparateur4=new MenuItem("-");
 	private MenuItem itemApropos=new MenuItem("A propos ...");
-	
+
 	private GraphButton boutonNouveau=
-		new GraphButton("Nouveau","images/newFile.gif");
+		new GraphButton("Nouveau","img/newFile.gif");
 	private GraphButton boutonOuvrir=
-		new GraphButton("Ouvrir","images/openFile.gif");
+		new GraphButton("Ouvrir","img/openFile.gif");
 	private GraphButton boutonEnregistrer=
-		new GraphButton("Enregistrer","images/saveFile.gif");
+		new GraphButton("Enregistrer","img/saveFile.gif");
 	private GraphButton boutonCouper=
-		new GraphButton("Couper","images/cut.gif");
+		new GraphButton("Couper","img/cut.gif");
 	private GraphButton boutonCopier=
-		new GraphButton("Copier","images/copy.gif");
+		new GraphButton("Copier","img/copy.gif");
 	private GraphButton boutonColler=
-		new GraphButton("Coller","images/paste.gif");
+		new GraphButton("Coller","img/paste.gif");
 	private GraphButton boutonCompiler=
-		new GraphButton("Compiler","images/compile.gif");
+		new GraphButton("Compiler","img/compile.gif");
 	private GraphButton boutonExecuter=
-		new GraphButton("Exécuter","images/run.gif");
+		new GraphButton("ExÃ©cuter","img/run.gif");
 	private GraphButton boutonAide=
-		new GraphButton("Aide","images/help.gif");
-	
+		new GraphButton("Aide","img/help.gif");
+
 	private TextArea texte=new TextArea();
 	private Label etat=new Label();
 
-	// répertoire et nom du fichier édité
+	// rÃ©pertoire et nom du fichier Ã©ditÃ©
 	private static String repertoire="";
 	private static String fichier="";
 	private boolean modifie=false;
 	private Font fonte=new Font("Dialog",Font.PLAIN,14);
-	private static final String imageConfirmation="images/warning.gif";
+	private static final String imageConfirmation="img/warning.gif";
 	private Thread thread;
 
 	// main instancie Editeur et l'affiche
@@ -90,7 +90,7 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 		else editeur=new Editeur(args[0]);
 		editeur.setTitle(copyright+"["+fichier+"]");
 		editeur.show();
-		DialogApropos.afficher(editeur,"images/aPropos.gif");
+		DialogApropos.afficher(editeur,"img/aPropos.gif");
 	}
 
 	// constructeur sans argument
@@ -105,7 +105,7 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 	// lecture du fichier de configuration et des messages
 	public void chargerConfig()
 	{
-		// on détermine le fichier de configuration
+		// on dÃ©termine le fichier de configuration
 		String fichier=System.getProperty("cfg");
 		if(fichier==null)
 		{
@@ -114,10 +114,10 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 				".corewarrior.cfg";
 			System.getProperties().put("cfg",fichier);
 		}
-		// on crée les propriétés de configuration
+		// on crÃ©e les propriÃ©tÃ©s de configuration
 		Properties configuration=new Properties();
 		// maintenant on charge le fichier
-		try 
+		try
     {
       FileInputStream entree=new FileInputStream(fichier);
       configuration.load(entree);
@@ -139,7 +139,7 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
     catch(IOException e) {}
 	}
 
-	// constructeur avec nom du fichier à ouvrir
+	// constructeur avec nom du fichier Ã  ouvrir
 	Editeur(String chemin)
 	{
 		this();
@@ -149,7 +149,7 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 	// ouverture d'un fichier sans Dialog
 	private void ouvrirSansDialog(String chemin)
 	{
-		// on charge le fichier sélectionné
+		// on charge le fichier sÃ©lectionnÃ©
 		try
 		{
 			BufferedReader entree=new BufferedReader(new InputStreamReader(
@@ -212,8 +212,8 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 		menuAide.add(itemSeparateur4);
 		menuAide.add(itemApropos);
 		setMenuBar(menuBar);
-		// création de la barre de boutons
-		PanelImage barreBoutons=new PanelImage("images/chantier.gif");
+		// crÃ©ation de la barre de boutons
+		PanelImage barreBoutons=new PanelImage("img/chantier.gif");
 		barreBoutons.setLayout(new FlowLayout(FlowLayout.LEFT,5,5));
 		Panel groupeFichier=new Panel();
 		groupeFichier.setLayout(new GridLayout(1,3));
@@ -234,38 +234,38 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 		barreBoutons.add(groupeMake);
 		barreBoutons.add(boutonAide);
 		add("North",barreBoutons);
-		// on ajoute la zone d'édition
+		// on ajoute la zone d'Ã©dition
 		add("Center",texte);
 		texte.setBackground(Color.black);
 		texte.setForeground(Color.orange);
-		// on ajoute la ligne d'état
+		// on ajoute la ligne d'Ã©tat
 		add("South",etat);
 		etat.setBackground(Color.lightGray);
-		// redimensionne la fenètre
+		// redimensionne la fenÃ¨tre
 		setSize(640,480);
 		Dimension a=getToolkit().getScreenSize();
 		Rectangle b=getBounds();
 		setLocation((a.width-b.width)/2,(a.height-b.height)/2);
-		
+
 		// on ajoute les listeners
 		itemNouveau.addActionListener(this);
 		itemOuvrir.addActionListener(this);
 		itemEnregistrer.addActionListener(this);
 		itemEnregistrerSous.addActionListener(this);
 		itemQuitter.addActionListener(this);
-		
+
 		itemCouper.addActionListener(this);
 		itemCopier.addActionListener(this);
 		itemColler.addActionListener(this);
 		itemRechercher.addActionListener(this);
-		
+
 		itemCompiler.addActionListener(this);
 		itemExecuter.addActionListener(this);
-		
+
 		itemAide.addActionListener(this);
 		itemFonte.addActionListener(this);
 		itemApropos.addActionListener(this);
-		
+
 		boutonNouveau.addActionListener(this);
 		boutonOuvrir.addActionListener(this);
 		boutonEnregistrer.addActionListener(this);
@@ -275,12 +275,12 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 		boutonCompiler.addActionListener(this);
 		boutonExecuter.addActionListener(this);
 		boutonAide.addActionListener(this);
-		
-		addWindowListener(this);		
+
+		addWindowListener(this);
 		texte.addTextListener(this);
 	}
-	
-	// création d'un nouveau fichier
+
+	// crÃ©ation d'un nouveau fichier
 	public void nouveau()
 	{
 		chargement=true;
@@ -290,11 +290,11 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 		editeur.setTitle(copyright+"["+fichier+"]");
 		if(!etat.getText().equals("")) etat.setText("");
 	}
-	
+
 	// ouverture d'un fichier
 	public void ouvrir()
 	{
-		// on ouvre la fenètre de sélection de fichier
+		// on ouvre la fenÃ¨tre de sÃ©lection de fichier
 		FileDialog dialog=new FileDialog(this,"Ouvrir",FileDialog.LOAD);
 		dialog.setFilenameFilter(this);
 		dialog.setFile("*.src");
@@ -307,7 +307,7 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 			repertoire=dialog.getDirectory();
 			fichier=dialog.getFile();
 			String chemin=repertoire+fichier;
-			// on charge le fichier sélectionné
+			// on charge le fichier sÃ©lectionnÃ©
 			try
 			{
 				BufferedReader entree=new BufferedReader(new InputStreamReader(
@@ -329,14 +329,14 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 		}
 	}
 
-	// accept() pour implémenter FilenameFilter
+	// accept() pour implÃ©menter FilenameFilter
 	public boolean accept(File dir,String name)
 	{
 		if(name.endsWith(".src")) return true;
 		else return false;
 	}
-	
-	// enregistrement du fichier en cours d'édition
+
+	// enregistrement du fichier en cours d'Ã©dition
 	private void enregistrer()
 	{
 		if(fichier.equals(""))
@@ -346,7 +346,7 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 		else
 		{
 			String chemin=repertoire+fichier;
-			// on enregistre le fichier sélectionné
+			// on enregistre le fichier sÃ©lectionnÃ©
 			try
 			{
 				BufferedWriter sortie=new BufferedWriter(new OutputStreamWriter(
@@ -360,11 +360,11 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 		editeur.setTitle(copyright+"["+fichier+"]");
 		if(!etat.getText().equals("")) etat.setText("");
 	}
-	
+
 	// enregistrement sous un autre nom
 	private void enregistrerSous()
 	{
-		// on ouvre la fenètre de sélection de fichier
+		// on ouvre la fenÃ¨tre de sÃ©lection de fichier
 		FileDialog dialog=new FileDialog(this,"Enregistrer sous ...",
 			FileDialog.SAVE);
 		dialog.setFile("*.src");
@@ -376,7 +376,7 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 			repertoire=dialog.getDirectory();
 			fichier=dialog.getFile();
 			String chemin=repertoire+fichier;
-			// on enregistre le fichier sélectionné
+			// on enregistre le fichier sÃ©lectionnÃ©
 			try
 			{
 				BufferedWriter sortie=new BufferedWriter(new OutputStreamWriter(
@@ -390,7 +390,7 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 		editeur.setTitle(copyright+"["+fichier+"]");
 		if(!etat.getText().equals("")) etat.setText("");
 	}
-	
+
 	// quitter le programme
 	public void quitter()
 	{
@@ -401,7 +401,7 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 	// enregistrement de la configuration
 	private void enregistrerConfig()
 	{
-		// on crée les propriétés à enregistrer
+		// on crÃ©e les propriÃ©tÃ©s Ã  enregistrer
 		Properties configuration=new Properties();
 		configuration.put("fonte",getChaineFonte());
 		configuration.put("couleurs",getChaineCouleurs());
@@ -414,7 +414,7 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 		}
 		catch(IOException e) {e.printStackTrace();}
 	}
-	
+
 	// renvoie une chaine decrivant la fonte
 	private String getChaineFonte()
 	{
@@ -422,7 +422,7 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 			","+texte.getFont().getSize();
 		return chaine;
 	}
-	
+
 	// renvoie une chaine decrivant les couleurs du forum
 	private String getChaineCouleurs()
 	{
@@ -442,18 +442,18 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
     if(s.length()<2) return "0"+s;
     else return s;
   }
-	
-	// couper le texte sélectionné
+
+	// couper le texte sÃ©lectionnÃ©
 	private void couper()
 	{
 		String selection=texte.getSelectedText();
 		if(selection!=null)
 		{
-			// on récupère la chaine sélectionée
+			// on rÃ©cupÃ¨re la chaine sÃ©lectionÃ©e
 			StringSelection stringSelection=new StringSelection(selection);
 			this.getToolkit().getSystemClipboard().
 				setContents(stringSelection,stringSelection);
-			// on efface la chaine sélectionnée
+			// on efface la chaine sÃ©lectionnÃ©e
 			String chaine=texte.getText();
 			int debut=texte.getSelectionStart();
 			int fin=texte.getSelectionEnd();
@@ -462,24 +462,24 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 			texte.setCaretPosition(debut);
 		}
 	}
-	
-	// copier le texte sélectionné
+
+	// copier le texte sÃ©lectionnÃ©
 	private void copier()
 	{
 		String selection=texte.getSelectedText();
 		if(selection!=null)
 		{
-			// on récupère la chaine sélectionée
+			// on rÃ©cupÃ¨re la chaine sÃ©lectionÃ©e
 			StringSelection stringSelection=new StringSelection(selection);
 			this.getToolkit().getSystemClipboard().
 				setContents(stringSelection,stringSelection);
 		}
 	}
-	
+
 	// coller le texte du presse papier
 	private void coller()
 	{
-		// on récupère la chaine du clipboard
+		// on rÃ©cupÃ¨re la chaine du clipboard
 		Clipboard clipboard=getToolkit().getSystemClipboard();
 		Transferable transferable=clipboard.getContents(this);
 		String chaine=null;
@@ -498,13 +498,13 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 			texte.setCaretPosition(position+chaine.length());
 		}
 	}
-	
+
 	// rechercher un texte
 	private void rechercher()
 	{
 		DialogRecherche.afficher(this);
 	}
-	
+
 	// recherche de l'occurence suivante du texte
 	void next(String recherche,boolean debut,boolean ignoreCase)
 	{
@@ -516,37 +516,37 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 			recherche=recherche.toLowerCase();
 		}
 		int next=chaine.indexOf(recherche,index);
-		// si la chaine a été trouvée
+		// si la chaine a Ã©tÃ© trouvÃ©e
 		if(next>=0)
 		{
-			// on place le caret à la fin
+			// on place le caret Ã  la fin
 			texte.setCaretPosition(next+recherche.length());
-			// on sélectionne la chaine
+			// on sÃ©lectionne la chaine
 			texte.select(next,next+recherche.length());
 			texte.requestFocus();
 		}
-		// si elle n'a pas été trouvée, on beep
+		// si elle n'a pas Ã©tÃ© trouvÃ©e, on beep
 		else
 		{
 			getToolkit().beep();
-			// on place le caret à la fin
+			// on place le caret Ã  la fin
 			int position=chaine.length();
 			texte.setCaretPosition(position);
 			texte.select(position,position);
 			texte.requestFocus();
 		}
 	}
-	
+
 	// remplacement de texte
 	private void remplacer()
 	{
 		System.out.println("Remplacer");
 	}
-	
-	// compiler le programme édité
+
+	// compiler le programme Ã©ditÃ©
 	private void compiler()
 	{
-		try 
+		try
 		{
 			InputStream entree=new StringBufferInputStream(texte.getText());
 			String fichierSortie=repertoire+fichier.substring(
@@ -561,7 +561,7 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 			etat.setText(e.toString());
 			int ligne=e.getLigne();
 			// on recherche la position du caret pour
-			// le début et la fin de la ligne
+			// le dÃ©but et la fin de la ligne
 			int debut=0;
 			for(int i=0;i<ligne;i++)
 			{
@@ -569,32 +569,32 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 			}
 			int fin=texte.getText().indexOf('\n',debut);
 			if(fin==-1) fin=texte.getText().length();
-			// on place le caret à la fin
+			// on place le caret Ã  la fin
 			texte.setCaretPosition(fin);
-			// on sélectionne la ligne
+			// on sÃ©lectionne la ligne
 			texte.select(debut,fin);
 			texte.requestFocus();
 		}
 		catch(IOException e) {etat.setText(e.toString());}
 	}
 
-	// exécuter le programme édité
+	// exÃ©cuter le programme Ã©ditÃ©
 	private void executer()
 	{
     thread=new Thread(this);
     thread.start();
 	}
 
-  // méthode run pour le thread d'attente de l'ouverture du moteur
+  // mÃ©thode run pour le thread d'attente de l'ouverture du moteur
   public void run()
   {
   	try
     {
-			// on crée une instance graphique du moteur
+			// on crÃ©e une instance graphique du moteur
   		Moteur moteur=new Moteur();
-			// on crée une instance de la fenètre
+			// on crÃ©e une instance de la fenÃ¨tre
 			Fenetre fenetre=new Fenetre(moteur,false);
-			// on affiche la fenètre de visualisation
+			// on affiche la fenÃ¨tre de visualisation
 			fenetre.show();
       // on attent l'affichage de la fenetre
       while(!fenetre.isShowing())
@@ -623,46 +623,46 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 			Color.orange,Color.black);
 	}
 
-	// changement de la fonte et des couleurs de l'éditeur
+	// changement de la fonte et des couleurs de l'Ã©diteur
 	private void fonte()
 	{
 		BoiteConfigurationTextArea.ouvrir(this,texte);
 	}
 
-	// affichage de la fenêtre à propos
+	// affichage de la fenÃªtre Ã  propos
 	private void aPropos()
 	{
-		DialogApropos.afficher(editeur,"images/aPropos.gif");
+		DialogApropos.afficher(editeur,"img/aPropos.gif");
 	}
-	
-	// gestion des évènements
+
+	// gestion des Ã©vÃ¨nements
 	public void actionPerformed(ActionEvent evt)
 	{
 		String cmd=evt.getActionCommand();
-		if(cmd.equals("Nouveau")) 
+		if(cmd.equals("Nouveau"))
 		{
-			if(modifie) 
+			if(modifie)
 			{
 				String titre="Confirmation";
 				String[] lignes={
-					"Le nouveau fichier va écraser",
-					"le fichier en cours d'édition.",
-					"Confirmez-vous l'opération ?"};
+					"Le nouveau fichier va Ã©craser",
+					"le fichier en cours d'Ã©dition.",
+					"Confirmez-vous l'opÃ©ration ?"};
 				Confirmation confirmation=new Confirmation(
 					this,titre,lignes,"nouveau",null,imageConfirmation);
 				confirmation.show();
 			}
 			else nouveau();
 		}
-		else if(cmd.equals("Ouvrir")) 
+		else if(cmd.equals("Ouvrir"))
 		{
-			if(modifie) 
+			if(modifie)
 			{
 				String titre="Confirmation";
 				String[] lignes={
-					"Le fichier ouvert va écraser",
-					"le fichier en cours d'édition.",
-					"Confirmez-vous l'opération ?"};
+					"Le fichier ouvert va Ã©craser",
+					"le fichier en cours d'Ã©dition.",
+					"Confirmez-vous l'opÃ©ration ?"};
 				Confirmation confirmation=new Confirmation(
 					this,titre,lignes,"ouvrir",null,imageConfirmation);
 				confirmation.show();
@@ -673,13 +673,13 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 		else if(cmd.equals("Enregistrer sous ...")) {enregistrerSous();}
 		else if(cmd.equals("Quitter"))
 		{
-			if(modifie) 
+			if(modifie)
 			{
 				String titre="Confirmation";
 				String[] lignes={
 					"En quittant, vous allez perdre",
-					"le fichier en cours d'édition.",
-					"Confirmez-vous l'opération ?"};
+					"le fichier en cours d'Ã©dition.",
+					"Confirmez-vous l'opÃ©ration ?"};
 				Confirmation confirmation=new Confirmation(
 					this,titre,lignes,"quitter",null,imageConfirmation);
 				confirmation.show();
@@ -692,7 +692,7 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 		else if(cmd.equals("Rechercher ...")) {rechercher();}
 		else if(cmd.equals("Remplacer ...")) {remplacer();}
 		else if(cmd.equals("Compiler")) {compiler();}
-		else if(cmd.equals("Exécuter")) {executer();}
+		else if(cmd.equals("ExÃ©cuter")) {executer();}
 		else if(cmd.equals("Aide")) {aide();}
 		else if(cmd.equals("Fonte")) {fonte();}
 		else if(cmd.equals("A propos ...")) {aPropos();}
@@ -714,13 +714,13 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
 
 	public void windowClosing(WindowEvent e)
 	{
-		if(modifie) 
+		if(modifie)
 		{
 			String titre="Confirmation";
 			String[] lignes={
 				"En quittant, vous allez perdre",
-				"le fichier en cours d'édition.",
-				"Confirmez-vous l'opération ?"};
+				"le fichier en cours d'Ã©dition.",
+				"Confirmez-vous l'opÃ©ration ?"};
 			Confirmation confirmation=new Confirmation(
 				this,titre,lignes,"quitter",null,imageConfirmation);
 			confirmation.show();
@@ -734,8 +734,8 @@ WindowListener,ActionListener,TextListener,Runnable,FilenameFilter
   public void windowDeiconified(WindowEvent e) {}
   public void windowActivated(WindowEvent e) {}
   public void windowDeactivated(WindowEvent e) {}
-  
-  // méthode d'ajout d'un composant au GradBagLayout
+
+  // mÃ©thode d'ajout d'un composant au GradBagLayout
 	public static void ajouter(Container container,Component component,
 		int gridx,int gridy,int gridwidth,int gridheight,int fill,
 		int anchor,int weightx,int weighty)

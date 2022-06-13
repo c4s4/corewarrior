@@ -1,0 +1,45 @@
+              AIDE COREWARRIOR
+
+MNEMONIQUES
+-----------
+
+DAT arg1       Valeur numérique. Non exécutable.
+
+MOV arg1 arg2  Recopie le arg1 dans arg2.
+
+ADD arg1 arg2  Ajoute arg1 à arg2.
+
+SUB arg1 arg2  Soustrait arg1 à arg2.
+
+JMP arg1       Saut à l'adresse arg1.
+
+JMZ arg1 arg2  Saut à l'adresse arg1 si arg2 est 
+               nul.
+JMG arg1 arg2  Saut à l'adresse arg1 si arg2 est 
+               supérieur à 0.
+DJZ arg1 arg2  Décrémente arg2 et saut à l'adresse
+               arg1 si le résultat est nul.
+CMP arg1 arg2  Compare arg1 à arg2 et saute l'
+               instruction suivante si différent.
+
+ADRESSAGE
+---------
+
+IMMEDIAT    L'argument est interprété directement
+            comme une valeur. Préfixe #.
+RELATIF     L'argument est une adresse relative à
+            l'adresse de l'instruction courante.
+            Pas de préfixe (adressage par défaut).
+INDIRECT    L'argument est l'adresse de l'adresse
+            de la valeur. Préfixe @.
+
+ERREURS
+-------
+
+INDIRECTION  Signifie que la case de l'adresse pour
+             un adressage indirect ne contient pas
+             l'instruction DAT.
+
+ARITHMETIQUE Toute opération arithmétique (ADD, 
+             SUB et autres) doivent opérer sur des
+             DAT.

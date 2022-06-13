@@ -10,24 +10,24 @@ import java.awt.event.*;
 class DialogRecherche extends Dialog 
 implements WindowListener,ActionListener
 {
-	// éléments de l'interface graphique
+	// Ã©lÃ©ments de l'interface graphique
 	private Label labelRechercher=new Label("Rechercher : ");
 	private TextField textRechercher=new TextField();
-	private Checkbox debut=new Checkbox("Du début");
+	private Checkbox debut=new Checkbox("Du dÃ©but");
 	private Checkbox casse=new Checkbox("Ignorer Casse");
 	private Button boutonRechercher=new Button("Rechercher");
 	private Button boutonOK=new Button("OK");
-	// référence sur la fenètre affichée
+	// rÃ©fÃ©rence sur la fenÃ¨tre affichÃ©e
 	private static DialogRecherche fenetre=null;
-	// référence de l'objet CoreWarrior
+	// rÃ©fÃ©rence de l'objet CoreWarrior
 	private static Editeur editeur=null;
 	
-	// méthode statique d'invocation
+	// mÃ©thode statique d'invocation
 	public static void afficher(Frame frame)
 	{
-		// si une fenètre est déja affichée, on la sélectionne
+		// si une fenÃ¨tre est dÃ©ja affichÃ©e, on la sÃ©lectionne
 		if(fenetre!=null) fenetre.requestFocus();
-		// sinon on en crée une nouvelle
+		// sinon on en crÃ©e une nouvelle
 		else 
 		{
 			editeur=(Editeur) frame;
@@ -54,7 +54,7 @@ implements WindowListener,ActionListener
 			GridBagConstraints.NONE,GridBagConstraints.EAST,0,0);
 		Editeur.ajouter(this,boutonOK,3,1,1,1,
 			GridBagConstraints.NONE,GridBagConstraints.EAST,0,0);
-		// on pack la fenètre et on la recentre
+		// on pack la fenÃ¨tre et on la recentre
 		pack();
 		setResizable(false);
 		// on centre la fenetre
@@ -67,25 +67,25 @@ implements WindowListener,ActionListener
 		boutonOK.addActionListener(this);
 	}
 	
-	// méthode pour implémenter l'Actionlistener
+	// mÃ©thode pour implÃ©menter l'Actionlistener
 	public void actionPerformed(ActionEvent evt)
 	{
 		String cmd=evt.getActionCommand();
-		// si on a cliqué sur le bouton [Rechercher]
+		// si on a cliquÃ© sur le bouton [Rechercher]
 		if(cmd.equals("Rechercher") && !textRechercher.getText().equals(""))
 		{
 			((Editeur) editeur).next(textRechercher.getText(),
 				debut.getState(),casse.getState());
 			debut.setState(false);
 		}
-		// si on a cliqué sur le bouton [OK]
+		// si on a cliquÃ© sur le bouton [OK]
 		else if(cmd.equals("OK"))
 		{
 			fenetre=null;
 			dispose();
 		}
 	}
-	// méthodes pour implémenter l'interface WindowListener
+	// mÃ©thodes pour implÃ©menter l'interface WindowListener
 	public void windowClosing(WindowEvent evt) 
 	{
 		fenetre=null;

@@ -12,16 +12,16 @@ import java.io.*;
 final class Console extends Panel
 implements ActionListener
 {
-  // couleur du programme controlé par la console
+  // couleur du programme controlÃ© par la console
   private int couleur;
-  // référence de la fenètre
+  // rÃ©fÃ©rence de la fenÃ¨tre
   private Fenetre fenetre;
   // longueur de la liste de dump
   public static final int etendue=18;
-  // adresse de la première case de la liste de dump
+  // adresse de la premiÃ¨re case de la liste de dump
   private int dumpIP=-2*etendue;
 
-  // éléments de l'interface utilisateur
+  // Ã©lÃ©ments de l'interface utilisateur
   private Dessin titre;
   private Button boutonCharger=new Button("Charger");
   private Button boutonPurger=new Button("Purger");
@@ -31,11 +31,11 @@ implements ActionListener
 	private Label labelIP=new Label("IP :  ");
   private TextField textIP=new TextField(4);
 
-  // répertoire courant recherche
+  // rÃ©pertoire courant recherche
   private static String repertoire="";
   // noms des fichiers image des feux
 	private static final String[] fichiersFeu=
-  	{"images/feuRouge.gif","images/feuVert.gif"};
+  	{"img/feuRouge.gif","img/feuVert.gif"};
 
   // constructeur
 	Console(Fenetre fenetre,int couleur,String fichier)
@@ -48,7 +48,7 @@ implements ActionListener
   // initialisation de l'interface utilisateur
   private void initGUI(String fichier)
   {
-  	// on ajoute les éléments de l'interface
+  	// on ajoute les Ã©lÃ©ments de l'interface
   	setLayout(new GridBagLayout());
     titre=new Dessin(fichier);
     ajouter(this,titre,0,0,3,1,GridBagConstraints.HORIZONTAL,
@@ -69,15 +69,15 @@ implements ActionListener
 			GridBagConstraints.SOUTHEAST,0,0);
     ajouter(this,textIP,2,4,1,1,GridBagConstraints.HORIZONTAL,
 			GridBagConstraints.SOUTHEAST,0,0);
-    // on rend les TextFields non éditables
+    // on rend les TextFields non Ã©ditables
     textNom.setEditable(false);
     textIP.setEditable(false);
-    // on enregistre la console auprès du bouton
+    // on enregistre la console auprÃ¨s du bouton
     boutonCharger.addActionListener(this);
     boutonPurger.addActionListener(this);
   }
 
-  // met à jour le contenu d'une case mémoire
+  // met Ã  jour le contenu d'une case mÃ©moire
   public void miseAjour(int ip)
   {
   	if(ip>=dumpIP && ip<dumpIP+etendue)
@@ -90,10 +90,10 @@ implements ActionListener
     }
   }
 
-  // affiche un dump de la mémoire dans la liste
+  // affiche un dump de la mÃ©moire dans la liste
   public void dump(int ip)
   {
-  	// si l'IP est dans la liste, on le sélectionne
+  	// si l'IP est dans la liste, on le sÃ©lectionne
   	if(ip>=dumpIP && ip<dumpIP+etendue)
     {
     	dump.select(ip-dumpIP);
@@ -102,7 +102,7 @@ implements ActionListener
 		{
     	dump.select(ip-dumpIP+Moteur.TAILLE);
     }
-    // sinon, on réaffiche toute la liste
+    // sinon, on rÃ©affiche toute la liste
     else
     {
     	// on calcule l'IP du haut de la liste
@@ -121,7 +121,7 @@ implements ActionListener
   // fixe le trait
   public void setTrait(boolean etat) {feu.setImage(etat?1:0);}
 
-  // affiche le programme chargé
+  // affiche le programme chargÃ©
   public void lister()
   {
   	dump.removeAll();
@@ -129,21 +129,21 @@ implements ActionListener
     for(int i=0;i<programme.length;i++) dump.add(programme[i]);
   }
 
-  // désactive les boutons de chargement et de purge
+  // dÃ©sactive les boutons de chargement et de purge
   public void desactiver()
   {
   	boutonCharger.setEnabled(false);
     boutonPurger.setEnabled(false);
   }
 
-  // réactive les boutons de chargement et de purge
+  // rÃ©active les boutons de chargement et de purge
   public void reactiver()
   {
   	boutonCharger.setEnabled(true);
     boutonPurger.setEnabled(true);
   }
 
-  // méthode d'interception des évènements
+  // mÃ©thode d'interception des Ã©vÃ¨nements
   public void actionPerformed(ActionEvent evt)
   {
   	String cmd=evt.getActionCommand();
@@ -184,7 +184,7 @@ implements ActionListener
     }
   }
 
-  // méthode d'ajout d'un composant au GradBagLayout
+  // mÃ©thode d'ajout d'un composant au GradBagLayout
 	public static void ajouter(Container container,Component component,
 		int gridx,int gridy,int gridwidth,int gridheight,int fill,
 		int anchor,int weightx,int weighty)

@@ -11,13 +11,13 @@ import java.net.*;
 
 public final class GraphButton extends Canvas
 {
-	// image du bouton à afficher
+	// image du bouton Ã  afficher
 	private Image image;
-  // image du bouton désélectionné
+  // image du bouton dÃ©sÃ©lectionnÃ©
 	private Image image2;
-	// action à lancer
+	// action Ã  lancer
 	private String action="";
-	// ActionListeners enregistrés pour envoyer les ActionEvents
+	// ActionListeners enregistrÃ©s pour envoyer les ActionEvents
 	private Vector actionListeners=new Vector();
 
 	// constructeur avec arguments
@@ -31,7 +31,7 @@ public final class GraphButton extends Canvas
 		tracker.addImage(image,0);
 		try {tracker.waitForID(0);}
 		catch(InterruptedException e) {e.printStackTrace();}
-		// on permet les évènements
+		// on permet les Ã©vÃ¨nements
 		enableEvents(AWTEvent.MOUSE_EVENT_MASK);
 	}
 
@@ -49,11 +49,11 @@ public final class GraphButton extends Canvas
 		tracker.addImage(image2,0);
 		try {tracker.waitForID(0);}
 		catch(InterruptedException e) {e.printStackTrace();}
-		// on permet les évènements
+		// on permet les Ã©vÃ¨nements
 		enableEvents(AWTEvent.MOUSE_EVENT_MASK);
 	}
 
-	// retourne les dimensions souhaitées
+	// retourne les dimensions souhaitÃ©es
 	public Dimension getPreferredSize()
 	{
 		return new Dimension(image.getWidth(this),image.getWidth(this));
@@ -85,7 +85,7 @@ public final class GraphButton extends Canvas
 		actionListeners.addElement(listener);
 	}
 
-	// gère les clics sur le composant
+	// gÃ¨re les clics sur le composant
 	protected void processMouseEvent(MouseEvent evt)
 	{
   	if(!isEnabled()) return;

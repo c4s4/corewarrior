@@ -11,18 +11,18 @@ import casa.awt.*;
 public final class DialogApropos extends Dialog
 implements WindowListener,ActionListener
 {
-	// éléments de l'interface graphique
+	// Ã©lÃ©ments de l'interface graphique
 	private Dessin dessin;
 	private Button boutonOK=new Button(" OK ");
-	// référence sur la fenètre affichée
+	// rÃ©fÃ©rence sur la fenÃ¨tre affichÃ©e
 	private static DialogApropos fenetre=null;
 	
-	// méthode statique d'invocation
+	// mÃ©thode statique d'invocation
 	public static void afficher(Frame frame,String image)
 	{
-		// si une fenètre est déja affichée, on la sélectionne
+		// si une fenÃ¨tre est dÃ©ja affichÃ©e, on la sÃ©lectionne
 		if(fenetre!=null) fenetre.requestFocus();
-		// sinon on en crée une nouvelle
+		// sinon on en crÃ©e une nouvelle
 		else 
 		{
 			fenetre=new DialogApropos(frame,image);
@@ -41,7 +41,7 @@ implements WindowListener,ActionListener
 		barreBoutons.setLayout(new FlowLayout());
 		barreBoutons.add(boutonOK);
 		add("South",barreBoutons);
-		// on pack la fenètre et on la recentre
+		// on pack la fenÃ¨tre et on la recentre
 		pack();
 		setResizable(false);
 		Rectangle a=frame.getBounds();
@@ -51,7 +51,7 @@ implements WindowListener,ActionListener
 		boutonOK.addActionListener(this);
 	}
 	
-	// méthode pour implémenter l'Actionlistener
+	// mÃ©thode pour implÃ©menter l'Actionlistener
 	public void actionPerformed(ActionEvent evt)
 	{
 		String cmd=evt.getActionCommand();
@@ -61,7 +61,7 @@ implements WindowListener,ActionListener
 			dispose();
 		}
 	}
-	// méthodes pour implémenter l'interface WindowListener
+	// mÃ©thodes pour implÃ©menter l'interface WindowListener
 	public void windowClosing(WindowEvent evt) 
 	{
 		fenetre=null;

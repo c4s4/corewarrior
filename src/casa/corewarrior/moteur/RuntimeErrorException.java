@@ -6,14 +6,14 @@ package casa.corewarrior.moteur;
 
 public final class RuntimeErrorException extends Exception
 {
-	// nom du programme planté
+	// nom du programme plantÃ©
   private String prog;
 	// adresse de l'erreur
 	private int adresse;
   // cycle pendant lequel se produit l'erreur
   private int cycle;
 
-	// constructeur : message + programme + numéro du cycle
+	// constructeur : message + programme + numÃ©ro du cycle
 	RuntimeErrorException(String message,String prog,int adresse,int cycle)
 	{
 		super(message);
@@ -22,7 +22,7 @@ public final class RuntimeErrorException extends Exception
     this.cycle=cycle;
 	}
 
-	// conversion en chaine de caractères
+	// conversion en chaine de caractÃ¨res
 	public String toString()
 	{
 		return "Crash \""+prog+"\" [cycle="+cycle+", adresse="+adresse+"] : "+

@@ -1,7 +1,0 @@
-#!/bin/bash
-# placer ici le r�pertoire d'installation
-CORE_HOME=$(dirname -- "$0")
-# définition du CLASSPATH
-export CLASSPATH=$CORE_HOME/bin.jar:$CORE_HOME/lib.jar
-# si vous utilisez le JRE, remplacer java par jre
-java casa.corewarrior.editeur.Editeur $*

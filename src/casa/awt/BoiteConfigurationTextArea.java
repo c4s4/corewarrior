@@ -12,16 +12,16 @@ public final class BoiteConfigurationTextArea extends Dialog
 	private final static String titre="Choix de la fonte du forum";
 	/** configurateur du TextArea */
 	private ConfigurationTextArea config;
-	/** référence d'une fenêtre ouverte */
+	/** rÃ©fÃ©rence d'une fenÃªtre ouverte */
 	static private BoiteConfigurationTextArea boite=null;
-	/** TextArea à modifier */
+	/** TextArea Ã  modifier */
 	private TextArea texte;
-	
-	/** éléments de l'interface */
+
+	/** Ã©lÃ©ments de l'interface */
 	Button btnOK=new Button(" OK ");
 	Button btnAnnuler=new Button("Annuler");
-	
-	/** ouvre une boite de sélection de la police */
+
+	/** ouvre une boite de sÃ©lection de la police */
 	static public void ouvrir(Frame frame,TextArea texte)
 	{
 		if(boite==null)
@@ -34,40 +34,40 @@ public final class BoiteConfigurationTextArea extends Dialog
 			boite.toFront();
 		}
 	}
-	
+
 	/** constructeur de la boite de configuration */
 	BoiteConfigurationTextArea(Frame frame,TextArea texte)
 	{
 		/* on appelle le constructeur parent */
 		super(frame,titre,false);
-		/* on stocke la référence sur le TextArea */
+		/* on stocke la rÃ©fÃ©rence sur le TextArea */
 		this.texte=texte;
 		/* on construit le configurateur */
 		config=new ConfigurationTextArea(texte);
 		/* on construit l'interface */
 		initInterface();
 	}
-	
+
 	/** initialisation de l'interface */
 	private void initInterface()
 	{
 		setLayout(new BorderLayout(5,5));
-		/* on ajoute les éléments de l'interface */
+		/* on ajoute les Ã©lÃ©ments de l'interface */
 		add("Center",config);
 		Panel barre=new Panel();
 		barre.setLayout(new FlowLayout(FlowLayout.RIGHT,5,5));
 		barre.add(btnOK);
 		barre.add(btnAnnuler);
 		add("South",barre);
-		/* on dimensionne la fenètre */
+		/* on dimensionne la fenÃªtre */
 		setResizable(false);
 		pack();
 	}
-	
+
 	/** gestion des composants de l'interface */
 	public boolean action(Event evt,Object what)
 	{
-		/* on a cliqué sur OK */
+		/* on a cliquÃ© sur OK */
 		if(evt.target==btnOK)
 		{
 			texte.setFont(config.fonte);
@@ -76,7 +76,7 @@ public final class BoiteConfigurationTextArea extends Dialog
 			boite=null;
 			dispose();
 		}
-		/* on a cliqué sur Annuler */
+		/* on a cliquÃ© sur Annuler */
 		else if(evt.target==btnAnnuler)
 		{
 			boite=null;
@@ -84,8 +84,8 @@ public final class BoiteConfigurationTextArea extends Dialog
 		}
 		return true;
 	}
-	
-	/** gestion de la fermeture de la fenètre */
+
+	/** gestion de la fermeture de la fenÃªtre */
 	public boolean handleEvent(Event evt)
 	{
 		if(evt.id==Event.WINDOW_DESTROY)

@@ -12,18 +12,18 @@ public final class Compilateur
 	// aide au programme
 	private static final String usage=
 	"Syntaxe : casa.corewarrior.compilateur.Compilateur fichier";
-	// taille de la m�moire pour le jeu
-  private static final int TAILLE=4096;
-  // valeur du mode d'adressage direct
-  private static final int DIRECT=0;
-  // valeur du mode d'adressage relatif
-  private static final int RELATIF=1;
-  // valeur du mode d'adressage indirect
-  private static final int INDIRECT=2;
-  // valeur des diff�rentes mn�monics
-  private static final int
+	// taille de la mÃ©moire pour le jeu
+    private static final int TAILLE=4096;
+    // valeur du mode d'adressage direct
+    private static final int DIRECT=0;
+    // valeur du mode d'adressage relatif
+    private static final int RELATIF=1;
+    // valeur du mode d'adressage indirect
+    private static final int INDIRECT=2;
+    // valeur des diffÃ©rentes mnÃ©monics
+    private static final int
   	DAT=0,MOV=1,ADD=2,SUB=3,JMP=4,JMZ=5,JMG=6,DJZ=7,CMP=8;
-	
+
 	// main pour appel de la ligne de commande
 	public static void main(String[] args)
 	{
@@ -48,7 +48,7 @@ public final class Compilateur
 			{
 				System.out.println(e);
 			}
-			catch(SyntaxErrorException e) 
+			catch(SyntaxErrorException e)
 			{
 				System.out.println(e);
 			}
@@ -58,7 +58,7 @@ public final class Compilateur
 		else {System.out.print(usage);}
 	}
 
-	// m�thode de compilation, rejette une SyntaxErrorException
+	// mÃ©thode de compilation, rejette une SyntaxErrorException
 	public static void compiler(InputStream fluxEntree,OutputStream fluxSortie)
 	throws SyntaxErrorException,IOException
 	{
@@ -77,7 +77,7 @@ public final class Compilateur
 		{
 			throw new IOException("Erreur lecture source : "+e.getMessage());
 		}
-		// on compile les lignes une � une
+		// on compile les lignes une ï¿½ une
 		try
 		{
 			for(int i=0;i<lignes.size();i++)
@@ -97,19 +97,19 @@ public final class Compilateur
 			throw new IOException("Erreur ecriture binaire : "+e.getMessage());
 		}
 	}
-	
+
 	// met une ligne en forme
 	private static String[] decouper(String ligne)
 	{
-		// on enl�ve les blancs en d�but et fin de ligne
+		// on enlÃ¨ve les blancs en dÃ©but et fin de ligne
 		ligne=ligne.trim();
-		// on cherche les caract�res * pour �liminer la fin de ligne
+		// on cherche les caractÃ¨res * pour Ã©liminer la fin de ligne
 		if(ligne.indexOf("*")!=-1)
 			ligne=ligne.substring(0,ligne.indexOf("*"));
 		ligne=ligne.trim();
 		// on remplace les TAB par des espaces
 		ligne=ligne.replace('\t',' ');
-		// on d�coupe la chaine en jetons
+		// on dÃ©coupe la chaine en jetons
 		Vector listeJetons=new Vector();
 		StringTokenizer tokenizer=new StringTokenizer(ligne," ");
 		while(tokenizer.hasMoreElements())
@@ -123,12 +123,12 @@ public final class Compilateur
 		listeJetons.copyInto(jetons);
 		return jetons;
 	}
-	
-	// m�thode de compilation d'une ligne
+
+	// mÃ©thode de compilation d'une ligne
 	private static int compilerLigne(String[] jetons,int numero)
 	throws SyntaxErrorException
 	{
-		// on d�coupe la ligne
+		// on dÃ©coupe la ligne
 		String mnemonic=jetons[0];
 		String[] arg=new String[jetons.length-1];
 		System.arraycopy(jetons,1,arg,0,arg.length);
@@ -141,12 +141,12 @@ public final class Compilateur
 		int code=(mnemonicBin << 28) | (argBin[0] << 14) | argBin[1];
 		return code;
 	}
-	
-	// conversion d'un mn�monic en binaire
+
+	// conversion d'un mnÃ©monic en binaire
 	private static int mnemonic2bin(String mnemonic,int numero,String[] args)
 	throws SyntaxErrorException
 	{
-		if(mnemonic.equalsIgnoreCase("dat")) 
+		if(mnemonic.equalsIgnoreCase("dat"))
 		{
 			if(args.length>1) throw new SyntaxErrorException(
 				"Le mnemonic DAT demande 1 argument",numero);
@@ -159,7 +159,7 @@ public final class Compilateur
 			if(args.length<2) throw new SyntaxErrorException(
 				"Le mnemonic MOV demande 2 arguments",numero);
 			if(getMode(args[1])==DIRECT) throw new SyntaxErrorException(
-				"Le deuxi�me argument du mnemonic MOV ne peut etre imm�diat",numero);
+				"Le deuxiï¿½me argument du mnemonic MOV ne peut etre immï¿½diat",numero);
 			return MOV;
 		}
 		else if(mnemonic.equalsIgnoreCase("add"))
@@ -167,7 +167,7 @@ public final class Compilateur
 			if(args.length<2) throw new SyntaxErrorException(
 				"Le mnemonic ADD demande 2 arguments",numero);
 			if(getMode(args[1])==DIRECT) throw new SyntaxErrorException(
-				"Le deuxi�me argument du mnemonic ADD ne peut etre imm�diat",numero);
+				"Le deuxiï¿½me argument du mnemonic ADD ne peut etre immï¿½diat",numero);
 			return ADD;
 		}
 		else if(mnemonic.equalsIgnoreCase("sub"))
@@ -175,7 +175,7 @@ public final class Compilateur
 			if(args.length<2) throw new SyntaxErrorException(
 				"Le mnemonic SUB demande 2 arguments",numero);
 			if(getMode(args[1])==DIRECT) throw new SyntaxErrorException(
-				"Le deuxi�me argument du mnemonic SUB ne peut etre imm�diat",numero);
+				"Le deuxiï¿½me argument du mnemonic SUB ne peut etre immï¿½diat",numero);
 			return SUB;
 		}
 		else if(mnemonic.equalsIgnoreCase("jmp"))
@@ -183,34 +183,34 @@ public final class Compilateur
 			if(args.length>1) throw new SyntaxErrorException(
 				"Le mnemonic JMP demande 1 argument",numero);
 			if(getMode(args[0])==DIRECT) throw new SyntaxErrorException(
-				"L'argument du mnemonic JMP ne peut etre imm�diat",numero);
+				"L'argument du mnemonic JMP ne peut etre immï¿½diat",numero);
 			return JMP;
 		}
 		else if(mnemonic.equalsIgnoreCase("jmz"))
 		{
 			if(args.length<2) throw new SyntaxErrorException(
 				"Le mnemonic JMZ demande 2 arguments",numero);
-			if(getMode(args[0])==DIRECT || getMode(args[1])==DIRECT) 
+			if(getMode(args[0])==DIRECT || getMode(args[1])==DIRECT)
 				throw new SyntaxErrorException(
-				"Un argument du mnemonic JMZ ne peut etre imm�diat",numero);
+				"Un argument du mnemonic JMZ ne peut etre immï¿½diat",numero);
 			return JMZ;
 		}
 		else if(mnemonic.equalsIgnoreCase("jmg"))
 		{
 			if(args.length<2) throw new SyntaxErrorException(
 				"Le mnemonic JMG demande 2 arguments",numero);
-			if(getMode(args[0])==DIRECT || getMode(args[1])==DIRECT) 
+			if(getMode(args[0])==DIRECT || getMode(args[1])==DIRECT)
 				throw new SyntaxErrorException(
-				"Un argument du mnemonic JMG ne peut etre imm�diat",numero);
+				"Un argument du mnemonic JMG ne peut etre immï¿½diat",numero);
 			return JMG;
 		}
 		else if(mnemonic.equalsIgnoreCase("djz"))
 		{
 			if(args.length<2) throw new SyntaxErrorException(
 				"Le mnemonic DJZ demande 2 arguments",numero);
-			if(getMode(args[0])==DIRECT || getMode(args[1])==DIRECT) 
+			if(getMode(args[0])==DIRECT || getMode(args[1])==DIRECT)
 				throw new SyntaxErrorException(
-				"Un argument du mnemonic DJZ ne peut etre imm�diat",numero);
+				"Un argument du mnemonic DJZ ne peut etre immï¿½diat",numero);
 			return DJZ;
 		}
 		else if(mnemonic.equalsIgnoreCase("cmp"))
@@ -222,7 +222,7 @@ public final class Compilateur
 		else throw new
 			SyntaxErrorException("Mnemonic \""+mnemonic+"\" inconnu",numero);
 	}
-	
+
 	// conversion d'un argument en binaire
 	private static int arg2bin(String arg,int numero)
 	throws SyntaxErrorException
@@ -231,7 +231,7 @@ public final class Compilateur
 		if(arg==null) return 0;
 		// on code le mode de l'argument (relatif, @ ou #)
 		int mode=getMode(arg);
-		// on �limine le pr�fixe
+		// on Ã©limine le prï¿½fixe
 		if(arg.startsWith("#") || arg.startsWith("@"))
 			arg=arg.substring(1,arg.length());
 		// on code la valeur de l'argument

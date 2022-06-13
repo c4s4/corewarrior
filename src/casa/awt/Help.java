@@ -12,18 +12,18 @@ import java.net.*;
 
 public final class Help extends Frame implements WindowListener
 {
-	// éléments de l'interface
+	// Ã©lÃ©ments de l'interface
 	TextArea texte=new TextArea(30,55);
-	// référence sur la fenètre affichée
+	// rÃ©fÃ©rence sur la fenÃ¨tre affichÃ©e
 	private static Help fenetre=null;
 	
-	// méthode statique d'invocation
+	// mÃ©thode statique d'invocation
 	public static void afficher(String titre,String fichier,
 		Color text,Color fond)
 	{
-		// si une fenètre est déja affichée, on la sélectionne
+		// si une fenÃ¨tre est dÃ©ja affichÃ©e, on la sÃ©lectionne
 		if(fenetre!=null) fenetre.requestFocus();
-		// sinon on en crée une nouvelle
+		// sinon on en crÃ©e une nouvelle
 		else 
 		{
 			fenetre=new Help(titre,fichier,text,fond);
@@ -60,7 +60,7 @@ public final class Help extends Frame implements WindowListener
 		catch(Exception e) {e.printStackTrace();}
 		// on construit l'interface
 		add("Center",texte);
-		// on redimensionne et centre la fenêtre
+		// on redimensionne et centre la fenÃªtre
 		pack();
 		Dimension a=getToolkit().getScreenSize();
 		Rectangle b=getBounds();

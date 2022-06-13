@@ -6,10 +6,10 @@ package casa.corewarrior.compilateur;
 
 public final class SyntaxErrorException extends Exception
 {
-	// num�ro de ligne de l'erreur
+	// numÃ©ro de ligne de l'erreur
 	private int ligne;
 
-	// constructeur : message d'erreur + num�ro de ligne
+	// constructeur : message d'erreur + numÃ©ro de ligne
 	SyntaxErrorException(String message,int ligne)
 	{
 		super(message);
@@ -22,6 +22,6 @@ public final class SyntaxErrorException extends Exception
 		return "Erreur ligne "+(ligne+1)+" : "+getMessage();
 	}
 
-	// renvoie le num�ro de ligne
+	// renvoie le numÃ©ro de ligne
 	public int getLigne() {return ligne;}
 }

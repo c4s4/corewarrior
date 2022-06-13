@@ -10,19 +10,19 @@ import java.awt.event.*;
 public class InfoDialog extends Dialog
 implements WindowListener,ActionListener
 {
-	// éléments de l'interface utilisateur
+	// Ã©lÃ©ments de l'interface utilisateur
 	private Button boutonOK=new Button(" OK ");
-	// frame ayant appelé le Dialog
+	// frame ayant appelÃ© le Dialog
 	public Frame frame;
 
-  // méthode statique d'affichage
+  // mÃ©thode statique d'affichage
   public static void afficher(Frame frame,String titre,String[] lignes)
 	{
   	InfoDialog info=new InfoDialog(frame,titre,lignes);
     info.show();
   }
 
-	// constructeur : crée et ajoute les composants de l'interface
+	// constructeur : crÃ©e et ajoute les composants de l'interface
 	public InfoDialog(Frame frame,String titre,String[] lignes)
 	{
 		super(frame,titre,true);
@@ -52,14 +52,14 @@ implements WindowListener,ActionListener
   // retourne les marges
   public Insets insets() {return new Insets(30,15,5,15);}
 
-	// gestion des évènements
+	// gestion des Ã©vÃ¨nements
 	public void actionPerformed(ActionEvent evt)
 	{
 		String cmd=evt.getActionCommand();
 		if(cmd.equals(" OK ")) dispose();
 	}
 
-	// méthodes pour implémenter l'interface WindowListener
+	// mÃ©thodes pour implÃ©menter l'interface WindowListener
 	public void windowClosing(WindowEvent evt) {dispose();}
   public void windowOpened(WindowEvent evt) {}
   public void windowClosed(WindowEvent evt) {}

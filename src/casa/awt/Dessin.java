@@ -9,9 +9,9 @@ import java.net.*;
 
 public final class Dessin extends Canvas
 {
-	// image du bouton à afficher
+	// image du bouton Ã  afficher
 	private Image[] image=new Image[1];
-  // numéro de l'image à afficher
+  // numÃ©ro de l'image Ã  afficher
   private int numero=0;
 
 	// constructeur avec une image
@@ -42,7 +42,7 @@ public final class Dessin extends Canvas
 		catch(InterruptedException e) {e.printStackTrace();}
 	}
 
-  // détermine l'image affichée
+  // dÃ©termine l'image affichÃ©e
   public void setImage(int numero)
   {
   	if(this.numero!=numero)
@@ -52,7 +52,7 @@ public final class Dessin extends Canvas
     }
   }
 	
-	// retourne les dimensions souhaitées
+	// retourne les dimensions souhaitÃ©es
 	public Dimension getPreferredSize() 
 	{
 		return new Dimension(image[0].getWidth(this),image[0].getHeight(this));

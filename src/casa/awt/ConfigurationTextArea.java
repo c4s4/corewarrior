@@ -8,14 +8,14 @@ import java.awt.*;
 
 public final class ConfigurationTextArea extends Panel
 {
-	// fonte en cours d'élaboration
+	// fonte en cours d'Ã©laboration
 	public Font fonte=new Font(fontes[0],Integer.parseInt(tailles[0]),
 		transStyles[0]);
 	// couleur de fond de la zone de texte
 	public Color couleurFond=Color.black;
 	public Color couleurTexte=Color.white;
 	
-	// éléments de l'interface
+	// Ã©lÃ©ments de l'interface
 	Label lblFonte=new Label("Fonte");
 	Label lblTaille=new Label("Taille");
 	Label lblStyle=new Label("Style");
@@ -31,14 +31,14 @@ public final class ConfigurationTextArea extends Panel
 	TextArea txaTexte=new TextArea("abcdefghijklmnopq\n"
 		+"ABCDEFGHIJKLMNOPQ\n0123456789",5,10);
 	
-	// éléments des Choices
+	// Ã©lÃ©ments des Choices
 	static final String[] fontes={"Serif","SansSerif","Monospaced",
 		"Dialog","DialogInput","ZapfDingbats"};
 	static final String[] tailles={"8","10","12","14","16","20","24","30"};
 	static final String[] styles={"normal","gras","italic","gras-italic"};
 	static final String[] couleurs={"rouge","vert","bleu","blanc","noir",
-		"gris clair","gris","gris foncé","cyan","magenta","jaune","orange"};
-	// transformées des éléments des Choices
+		"gris clair","gris","gris foncÃ©","cyan","magenta","jaune","orange"};
+	// transformÃ©es des Ã©lÃ©ments des Choices
 	static final int[] transStyles={Font.PLAIN,Font.BOLD,Font.ITALIC,
 		Font.BOLD+Font.ITALIC};
 	static final Color[] transCouleurs={Color.red,Color.green,Color.blue,
@@ -90,7 +90,7 @@ public final class ConfigurationTextArea extends Panel
 	private final void initInterface()
 	{
 		setLayout(new GridBagLayout());
-		// initialisation du panel du réseau
+		// initialisation du panel du rÃ©seau
 		ajouter(this,lblFonte,0,0,2,1,GridBagConstraints.NONE,
 			GridBagConstraints.WEST,1,1);
 		ajouter(this,chcFonte,2,0,2,1,GridBagConstraints.NONE,
@@ -113,7 +113,7 @@ public final class ConfigurationTextArea extends Panel
 			GridBagConstraints.EAST,1,1);
 		ajouter(this,txaTexte,0,3,4,1,GridBagConstraints.BOTH,
 			GridBagConstraints.CENTER,1,1);
-		// on ajoute les éléments aux choices
+		// on ajoute les Ã©lÃ©ments aux choices
 		ajouterChoice(chcFonte,fontes);
 		ajouterChoice(chcTaille,tailles);
 		ajouterChoice(chcStyle,styles);
@@ -123,14 +123,14 @@ public final class ConfigurationTextArea extends Panel
 		actualiserZoneTexte();
 	}
 	
-	// ajoute des éléments à un Choice
+	// ajoute des Ã©lÃ©ments Ã  un Choice
 	private void ajouterChoice(Choice choice,String[] elements)
 	{
 		for(int i=0;i<elements.length;i++)
 			choice.addItem(elements[i]);
 	}
 	
-	// actualise la zone de texte avec les paramètres actuels
+	// actualise la zone de texte avec les paramÃ¨tres actuels
 	private void actualiserZoneTexte()
 	{
 		txaTexte.setFont(fonte);
@@ -177,7 +177,7 @@ public final class ConfigurationTextArea extends Panel
 		return true;
 	}
 
-	// méthode d'ajout d'un composant au GradBagLayout
+	// mÃ©thode d'ajout d'un composant au GradBagLayout
 	public static void ajouter(Container container,Component component,
 		int gridx,int gridy,int gridwidth,int gridheight,int fill,
 		int anchor,int weightx,int weighty)
