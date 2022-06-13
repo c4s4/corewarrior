@@ -41,3 +41,6 @@ publish: # Copy REAME in sweetohm site
 	cp README.md $(BUILD_DIR)/corewarrior.md
 	sed -i 's/(img\//(/g' $(BUILD_DIR)/corewarrior.md
 	cp $(BUILD_DIR)/corewarrior.md ../sweetohm/content/article/corewarrior.md
+
+run: archive # Build and run editor
+	$(BUILD_DIR)/corewarrior-$(VERSION)/editer
