@@ -1,0 +1,7 @@
+* dwarf
+
+jmp	2
+dat	-3
+add	#5	-1
+mov	#0	@-2
+jmp	-2

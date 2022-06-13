@@ -1,0 +1,13 @@
+* GEMINI : programme du premier article sur Core War
+
+jmp	3		* on saute au début du programme
+dat	0		* compteur du nombre d'instructions copiées
+dat	99		* adresse relative de la copie
+mov	@-2	@-1	* on copie l'instruction
+cmp	-3	#9	* on examine si on a recopié toutes les instructions
+jmp	4		* on saute à la copie du programme
+add	#1	-5	* on incrémente le nombre d'instructions copiées
+add	#1	-5	* on incrémente l'adresse de copie
+jmp	-5		* on boucle pour copier l'instruction suivante
+mov	#99	93	* on copie le compteur de l'adresse de la copie
+jmp	93		* on saute sur la copie du programme

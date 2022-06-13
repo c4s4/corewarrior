@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<title>Histoire de Core War</title>
+</head>
+
+<body bgcolor="#000000" text="#FFCC00" link="#FF0000" vlink="#FFCC00">
+<font color="#FF0000"><h1>Core Warrior</h1></font>
+
+<p>
+Core Warrior est un environnement de d&eacute;veloppement pour Core War &eacute;crit en Java (100 %, n'en d&eacute;plaise &agrave; Bill), il peut donc fonctionner sur toute plateforme munie d'une machine virtuelle Java 1.1 (donc Linux, Windows, Macintosh, Solaris, etc...). Il comporte un &eacute;diteur, un compilateur et une machine virtuelle Core War. Le compilateur et la machine virtuelle peuvent etre utilis&eacute;s en mode graphique ou en ligne de commande.
+
+<font color="#FF0000"><h1>Editeur</h1></font>
+
+<p>
+Permet d'&eacute;diter le Red Code et de lancer, sans sortir de l'EDI, le compilateur et la machine virtuelle (le moteur Red Code).
+</p>
+
+<img src="editeur.gif">
+
+<p>
+Le menu "Fichier" permet de cr&eacute;er un nouveau document, d'ouvrir un programme existant, d'enregistrer le programme en cours d'&eacute;dition, de l'enregistrer sous un autre nom et de quitter le programme. Les fichiers des programmes Red Code ont l'extension .src.
+
+<p>
+Le menu "Edition" permet de couper, copier, coller et rechercher une chaine dans le code.
+
+<p>
+Le menu "Compiler" permet de compiler le programme en cours d'&eacute;dition et de l'ex&eacute;cuter dans le moteur. Les fichiers compil&eacute;s ont le meme nom que le fichier source du programme, avec une extension .bin. Les fichiers compil&eacute;s sont ind&eacute;pendants de la plateforme et peuvent donc etre copi&eacute;s d'un ordinateur &agrave; un autre (meme de syst&egrave;me diff&eacute;rent) sans avoir &agrave; les recompiler.
+
+<p>
+Le menu "Aide" permet d'afficher une aide rapide sur le langage Red Code (r&eacute;sumant les diff&eacute;rentes instructions du langage et les modes d'adressage). Il permet aussi d'afficher la boite de configuration de la fonte et des couleurs de l'&eacute;diteur (d&eacute;sol&eacute;, je ne savais pas trop o&ugrave; caser cette option).
+
+<p>
+Les icones de la barre sous le menu sont des raccouris souris pour les principales fonctions de l'EDI.
+
+<p>
+Je pense que ces fonctions sont suffisament explicites pour se passer d'explications plus pouss&eacute;es.
+
+<font color="#FF0000"><h1>Moteur</h1></font>
+
+<a href="moteur-big.gif"><img src="moteur.gif"></a>
+
+<p>
+Le moteur de Core Warrior est l'ar&egrave;ne des combats de programmes. On peut y tester des programmes en cours de d&eacute;veloppement dans l'&eacute;diteur (le moteur est alors invoqu&eacute; &agrave; partir de l'&eacute;diteur et le programme en cours est automatiquement charg&eacute;). On peut aussi le lancer ind&eacute;pendemment de l'&eacute;diteur pour faire un combat entre deux programmes.
+
+<p><font color="#FF0000" size=+1>Charger un programme</font>
+
+<p>
+Pour faire tourner des programmes, il faut commencer par charger les programmes. Pour ce faire, cliquer sur le bouton [Charger] et s&eacute;lectionner le programme d&eacute;sir&eacute; (les programmes charg&eacute;s doivent etre compil&eacute;s, donc avec une extension .bin). Le programme est alors affich&eacute; dans la fen&egrave;tre de core dump. On peut enlever un programme charg&eacute; avec le bouton [Purger].
+
+<p><font color="#FF0000" size=+1>Installer les programmes dans le core</font>
+
+<p>
+Lorsque les programmes ont &eacute;t&eacute; charg&eacute;s, il faut les installer dans le core (l'ar&egrave;ne de combat). Cliquer sur le bouton [Installer]. Il apparait alors la fenetre suivante :
+</p>
+
+<img src="installer.gif">
+
+<p>
+Cette boite de dialogue permet de choisir l'<font color="#FF0000">adresse</font> o&ugrave; l'on doit installer chaque programme. On peut aussi les installer al&eacute;atoirement (c'est l'option &agrave; choisir pour des combats ordinaires).
+
+<p>
+La <font color="#FF0000">distance minimale</font> est celle s&eacute;parant deux programmes (utile lorsqu'on choisit une installation &agrave; des adresses al&eacute;atoires).
+
+<p>
+<font color="#FF0000">Cycles avant nul</font> indique le nombre de cycles avant que la partie soit d&eacute;clar&eacute;e nulle si aucun programme n'a plant&eacute;. Une valeur de 1.000.000 peut sembler d&eacute;mesur&eacute;e, mais la puissance des machines actuelles le permet amplement.
+
+<p>
+Apr&egrave;s avoir cliqu&eacute; sur [OK], les programmes apparaissent dans la repr&eacute;sentation graphique du core. Le programme vert est repr&eacute;sent&eacute; par des cases vertes, et le rouge par des cases rouges (original, je sais...).
+
+<p><font color="#FF0000" size=+1>Ex&eacute;cuter les programmes</font>
+
+<p>
+Pour ex&eacute;cuter les programmes, il y a 2 m&eacute;thodes :
+
+<ul>
+<li><font color="#FF0000">Pas &agrave; pas</font> : Cliquer sur la fl&egrave;che bleue dans la barre du haut. Une instruction du programme ayant le trait est ex&eacute;cut&eacute;e. Cette instruction est surlign&eacute;e en noir dans la barre de core dump. L'adresse de la prochaine instruction &agrave; ex&eacute;cuter est indiqu&eacute;e dans le champ de texte "IP" (pour "Instruction Pointer", un registre des processeurs x86). Le programme ayant le trait a un feu de couleur verte, celui ne l'ayant pas par un feu rouge.
+
+<li><font color="#FF0000">En continu</font> : Il faut alors cliquer sur la double fl&egrave;che verte. On peut alors arreter le programme en cliquant sur la double barre orange ou d&eacute;sinstaller les programmes du core par un clic sur le carr&eacute; rouge. On peut lancer les programmes avec 3 modes (que l'on peut choisir avec les cases &agrave; cocher de la barre du haut) :
+
+<ul>
+<li>Debug : les instructions sont alors trac&eacute;es dans la fen&egrave;tre de core dump et sur le core. C'est le mode le plus lent, mais aussi le plus int&eacute;ressant &agrave; suivre.
+<li>Trace : les instructions ne sont trac&eacute;es que sur le core.
+<li>Turbo : aucune repr&eacute;sentation graphique des programmes en cours d'ex&eacute;cution n'est propos&eacute;e, mais ce mode est de loin le plus rapide.
+</ul>
+</ul>
+
+<p>
+Le champ de text "temps" indique le temps entre chaque instruction. Il faut l'adapter &agrave; la vitesse de sa configuration de mani&egrave;re &agrave; ce que le rafraichissement graphique de la fenetre de core puisse se faire entre deux instructions. Si le temps est trop court, plusieurs instructions sont trac&eacute;es en meme temps sur le core, ce qui donne un affichage saccad&eacute;. N'est pas pris en compte pour le mode turbo.
+
+<font color="#FF0000"><h1>Outils en ligne de commande</h1></font>
+
+<p>
+Afin de satisfaire les hostiles aux cliquodromes (salut Xavier :), le compilateur et le moteur peuvent etre invoqu&eacute;s en ligne de commande. L'int&eacute;ret est d'automatiser des tournois pour lesquels un grand nombre de matchs est n&eacute;cessaire.
+
+<p><font color="#FF0000" size=+1>Compilateur</font>
+
+<p>
+Il faut se placer dans le r&eacute;pertoire du programme et taper en ligne de commande :
+
+<pre>
+$ java -classpath $CLASSPATH:bin.jar casa.corewarrior.compilateur.Compilateur fichier.src
+</pre>
+
+<p>
+O&ugrave; "fichier.src" est le nom du fichier &agrave; compiler. Le programme compil&eacute; sera plac&eacute; dans le fichier "fichier.bin" du meme r&eacute;pertoire.
+
+<p>
+Il faut noter que si une erreur de compilation se produit, le fichier binaire est tout de meme &eacute;crit (jusqu'&agrave; l'instruction ayant provoqu&eacute; l'erreur de compilation).
+
+<p><font color="#FF0000" size=+1>Moteur</font>
+
+<p>
+On lance le moteur en mode texte en tapant sur la ligne de commande (dans le r&eacute;pertoire du programme) :
+
+<pre>
+$ java -classpath $CLASSPATH:bin.jar casa.corewarrior.moteur.Moteur -option prog1.bin prog2.bin
+</pre>
+
+<p>
+Les options disponibles sont :
+
+<ul>
+<li>trace : trace l'ex&eacute;cution des programmes.
+<li>etat  : affiche un core dump des programmes &agrave; l'issu du combat.
+</ul>
+
+<p>
+Les programmes sont charg&eacute;s al&eacute;atoirement en m&eacute;moire et peuvent etre plus de deux (on peut ainsi organiser des combats entre 10 programmes simultan&eacute;ment :).
+
+<p><font color="#FF0000" size=+1>Note</font> : les utilisateurs de Windows doivent remplacer $CLASSPATH:bin.jar par %CLASSPATH%;bin.jar.
+
+<font color="#FF0000"><h1>Format des binaires</h1></font>
+
+<p>
+Les fichiers binaires g&eacute;n&eacute;r&eacute;s sont constitu&eacute;s d'une suite d'instructions de 4 octets chacune. Une instruction a le format suivant :
+
+<ul>
+<li>Instruction : cod&eacute;e sur 4 bits (ce qui laisse 16 possibilit&eacute;s dont 9 sont utilis&eacute;es). Les codes sont les suivants : DAT=0, MOV=1, ADD=2, SUB=3, JMP=4, JMZ=5, JMG=6, DJZ=7, CMP=8.
+<li>Premier argument : compos&eacute;
+<ul>
+<li>du mode d'adressage sur 2 bits (imm&eacute;diat=0, relatif=1 et indirect=2).
+<li>de la valeur sur 12 bits (soit possibilit&eacute; d'adresser 4096 cases m&eacute;moire).
+</ul>
+<li>Deuxi&egrave;me argument : comme le premier.
+</ul>
+
+<p>
+J'ai choisi de coder la valeur de l'argument sur 12 bits de mani&egrave;re &agrave; avoir un terrain de jeu le plus vaste possible. De plus, 4096 cases sont repr&eacute;sentables par un carr&eacute;, ce qui colle mieux avec une repr&eacute;sentation graphique du core.
+</p>
+
+<hr>
+<address><a href="mailto:casa@sdv.fr">Michel CASABIANCA</a></address>
+<!-- Created: Sun Nov 29 02:22:46 CET 1998 -->
+<!-- hhmts start -->
+Last modified: Mon Nov 30 04:56:18 CET 1998
+<!-- hhmts end -->
+</body>
+</html>

@@ -1,0 +1,23 @@
+* radar
+
+mov	#1	-100
+add	#19	14
+mov	#0	@13
+cmp	#1	-103
+jmp	-3
+
+* si détection du rouleau compresseur
+
+mov	@11	@12
+cmp	#1	10
+jmp	4
+add	#1	8
+add	#1	8
+jmp	-5
+mov	#-16	-129
+mov	#-16	-129
+mov	#-150	-129
+JMP	-147
+dat	-16
+dat	-16
+dat	-150

@@ -1,0 +1,9 @@
+#!/bin/bash
+# placer ici le répertoire d'installation de Core Warrior
+export CORE_HOME=/home/casa/pgm/corewarrior-0.2
+
+# si vous utilisez le JRE, remplacer 
+# java -classpath $CLASSPATH:$CORE_HOME/bin.jar:$CORE_HOME/lib.jar
+# par
+# jre -cp $CORE_HOME/bin.jar:$CORE_HOME/lib.jar
+java -classpath $CLASSPATH:$CORE_HOME/bin.jar:$CORE_HOME/lib.jar casa.corewarrior.moteur.Moteur $*
