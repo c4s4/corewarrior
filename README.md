@@ -25,8 +25,8 @@ auteur pour lequel j'ai le plus grand respect) a provoqué un véritable engouem
 L'idée de ce jeu est venue à l'auteur après qu'il aie entendu une anecdote (fausse, mais c'est un détail) qui parlait d'un programme (Creeper) se dupliquant lui même lorsqu'il était exécuté. Ce programme
 envahissant progressivement le réseau de la société où il avait été développé n'a pu être éradiqué qu'à l'aide d'un autre programme (Reaper) dont la mission était de traquer et détruire les exemplaires de Creeper qu'il rencontrait puis de se détruire lui même.
 
-L'auteur propose dans cet article un langage informatique simple (proche de l'assembleur) pour coder de petits programmes belliqueux : le Red Code. Pour une description détaillée de ce langage, voir la rubrique
-"Red Code" du menu ci-dessus. Les programmes s'exécutent dans la mémoire d'un ordinateur "virtuel" constituée de 8000 cases. Chaque case peut contenir une instruction. Les deux programmes sont installés
+L'auteur propose dans cet article un langage informatique simple (proche de l'assembleur) pour coder de petits programmes belliqueux : le Red Code. Pour une description détaillée de ce langage, voir la section
+**Red Code** ci-dessous. Les programmes s'exécutent dans la mémoire d'un ordinateur "virtuel" constituée de 8000 cases. Chaque case peut contenir une instruction. Les deux programmes sont installés
 aléatoirement dans une case de la mémoire, puis une instruction de chacun est exécutée successivement jusqu'à ce qu'un des deux programmes plante (par exemple si le pointeur de l'instruction à exécuter pointe
 sur une case contenant une donnée) ou que la partie soit nulle (après un nombre de cycles déterminé sans plantages d'un des concurrents). Le dernier programme opérationnel étant le vainqueur.
 
@@ -113,23 +113,19 @@ Dans un premier temps, il se reproduit par copie des cases mémoire de son propr
 
 Le plus simple pour étudier ces programmes est de les charger dans le moteur de Core Warrior et de les exécuter pas à pas pour voir l'effet de chaque instruction.
 
-Vous en savez maintenant assez pour créer vos premiers guerriers ! Pour ce faire, je ne saurait que vous recommander d'installer et lancer l'éditeur de Core Warrior (lancé par le script moteur ou moteur.bat).
+Vous en savez maintenant assez pour créer vos premiers guerriers ! Pour ce faire, je ne saurait que vous recommander d'installer et lancer l'éditeur de Core Warrior (lancé par le script moteur).
 
 ## Installation
 
-Ce programme nécéssite une machine virtuelle (VM) java 1.1 pour fonctionner. Sun met gratuitement à disposition des utilisateurs une VM pour Windows, Solaris et Linux. On peut les télécharger sur leur page : http://java.sun.com/products. Des VM existent pour quasiment toutes les plateformes, pour plus de détails voire le site de Sun.
+Ce programme nécéssite une machine virtuelle java pour fonctionner. On peut en télécharger une gratuitement à cette adresse <https://www.java.com/fr/download/manual.jsp>. Des VM existent pour quasiment toutes les plateformes, pour plus de détails voire le site d'Oracle.
 
 [corewarrior-0.2.zip](https://sweetohm.net/arc/corewarrior-0.2.zip)
 
-Pour installer le programme, dézipper les archives dans un répertoire (par exemple `/usr/local/corewarrior` ou `c:\corewarrior`), puis changer le répertoire du programme dans les scripts de lancement (editer, compiler et moteur, ou les mêmes fichiers avec l'extension `.bat` sous Windows). C'est tout !
-
-Pour une mise à jour, dézipper l'archive dans le répertoire du programme déja installé. Pour désinstaller le programme, il suffit d'effacer le répertoire.
-
-La documentation est incluse dans l'archive du programme.
+Pour installer le programme, dézipper l'archive dans le répertoire de votre choix (par exemple */usr/local/corewarrior*). On peut alors lancer les programmes avec les scripts *editer*, *compiler* et *moteur* du répertoire *bin* dans le répertoire d'installation.
 
 ## Editeur
 
-Permet d'éditer le Red Code et de lancer, sans sortir de l'EDI, le compilateur et la machine virtuelle (le moteur Red Code).
+Permet d'éditer, de compiler et d'exécuter le Red Code sans sortir de l'éditeur :
 
 ![Editeur](img/corewarrior.editeur.png)
 

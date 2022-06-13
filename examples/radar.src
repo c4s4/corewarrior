@@ -6,8 +6,6 @@ mov	#0	@13
 cmp	#1	-103
 jmp	-3
 
-* si détection du rouleau compresseur
-
 mov	@11	@12
 cmp	#1	10
 jmp	4

@@ -1,5 +1,0 @@
-****************************************************
-* IMP :  le programme Core War le plus simple *
-****************************************************
-
-mov 0 1		* on recopie l'instruction de l'IP dans la case suivante

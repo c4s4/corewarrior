@@ -1,4 +1,4 @@
 #!/bin/bash
 
-CORE_HOME=$(realpath $(dirname -- "$0")/../build)
+CORE_HOME=$(realpath $(dirname -- "$0"))
 java -cp ${CORE_HOME}/corewarrior.jar casa.corewarrior.compilateur.Compilateur $*
