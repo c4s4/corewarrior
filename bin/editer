@@ -1,4 +1,4 @@
 #!/bin/bash
 
-CORE_HOME=$(realpath $(dirname -- "$0"))
+CORE_HOME=$(dirname $(realpath -- "$0"))
 java -jar ${CORE_HOME}/corewarrior.jar
